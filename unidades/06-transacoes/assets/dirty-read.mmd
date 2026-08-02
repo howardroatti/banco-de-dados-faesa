@@ -1,0 +1,11 @@
+sequenceDiagram
+    autonumber
+    participant T1 as Transação 1
+    participant BD as Banco
+    participant T2 as Transação 2
+    T1->>BD: UPDATE conta SET saldo = 900 (sem COMMIT)
+    T2->>BD: SELECT saldo
+    BD-->>T2: 900  (leitura suja!)
+    T1->>BD: ROLLBACK
+    Note over BD: saldo volta a 1000
+    Note over T2: T2 decidiu com um valor que nunca existiu

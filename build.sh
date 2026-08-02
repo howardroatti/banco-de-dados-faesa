@@ -7,30 +7,31 @@
 #       ./build.sh caminho.md (renderiza um deck específico + seus diagramas)
 #
 # Requisitos: @marp-team/marp-cli (marp) e @mermaid-js/mermaid-cli (mmdc)
-set -euo pipefail
+set -uo pipefail
 cd "$(dirname "$0")"
 THEME="themes/faesa.css"
 
 render_mmd () { # $1 = arquivo .mmd
-  local out="${1%.mmd}.svg"
   echo "  mmd → svg: $1"
-  mmdc -i "$1" -o "$out" -t neutral -b transparent -q >/dev/null 2>&1
+  mmdc -i "$1" -o "${1%.mmd}.svg" -t neutral -b transparent -q >/dev/null 2>&1 \
+    || echo "    ! falha no mmdc: $1"
 }
-render_md () { # $1 = arquivo .md
-  local out="${1%.md}.html"
+render_md () { # $1 = arquivo .md  (marp: um por vez; </dev/null evita que ele "coma" o stdin do loop)
   echo "  md  → html: $1"
-  marp "$1" --theme "$THEME" --html --allow-local-files -o "$out"
+  marp "$1" --theme "$THEME" --html --allow-local-files -o "${1%.md}.html" </dev/null >/dev/null 2>&1 \
+    || echo "    ! falha no marp: $1"
 }
 
-if [ "${1:-}" != "" ]; then
-  # deck específico: renderiza os .mmd da pasta assets vizinha e o próprio deck
+if [ "${1:-}" != "" ]; then                 # deck específico
   dir="$(dirname "$1")"
-  [ -d "$dir/assets" ] && find "$dir/assets" -name '*.mmd' -print0 | while IFS= read -r -d '' f; do render_mmd "$f"; done
+  if [ -d "$dir/assets" ]; then
+    for f in "$dir"/assets/*.mmd; do [ -e "$f" ] && render_mmd "$f"; done
+  fi
   render_md "$1"
-else
+else                                         # tudo
   echo "== Diagramas Mermaid =="
-  find unidades _template -name '*.mmd' -print0 2>/dev/null | while IFS= read -r -d '' f; do render_mmd "$f"; done
+  while IFS= read -r f; do render_mmd "$f"; done < <(find unidades _template -name '*.mmd' 2>/dev/null)
   echo "== Decks Marp =="
-  find unidades _template -name '*.md' -print0 2>/dev/null | while IFS= read -r -d '' f; do render_md "$f"; done
+  while IFS= read -r f; do render_md "$f"; done < <(find unidades _template -name '*.md' 2>/dev/null)
 fi
 echo "OK."

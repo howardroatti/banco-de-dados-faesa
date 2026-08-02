@@ -14,8 +14,8 @@ As apresentações são escritas em **[Marp](https://marp.app/)** (Markdown → 
 | 2 | Arquitetura para Banco de Dados | ⏳ |
 | 3 | Introdução a Banco de Dados Relacional (+ Álgebra Relacional) | ⏳ |
 | 4 | Modelagem Relacional de Dados (conceitual + lógica com Mermaid) | ⏳ |
-| 5 | Linguagem SQL (DDL/DML/consultas) + Procedimentos Armazenados | ⏳ |
-| 6 | Processamento de Transações | ⏳ |
+| 5 | Linguagem SQL (DDL/DML/consultas) + [Procedimentos Armazenados](unidades/05-sql/procedimentos-armazenados.md) | ✅ |
+| 6 | [Processamento de Transações](unidades/06-transacoes/transacoes.md) | ✅ |
 | 7 | Bancos de Dados NoSQL / não estruturados | ⏳ |
 
 *(⏳ = em produção · ✅ = publicado)*

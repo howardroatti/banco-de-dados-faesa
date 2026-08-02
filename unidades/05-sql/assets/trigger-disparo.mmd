@@ -1,0 +1,7 @@
+flowchart LR
+    A[Comando DML<br/>INSERT/UPDATE/DELETE] --> B[BEFORE<br/>statement]
+    B --> C[BEFORE row<br/>:OLD / :NEW]
+    C --> D[aplica<br/>a linha]
+    D --> E[AFTER<br/>row]
+    E --> F[AFTER<br/>statement]
+    E -. repete por linha .-> C

@@ -1,0 +1,13 @@
+sequenceDiagram
+    autonumber
+    participant Ped as Serviço Pedido
+    participant Est as Serviço Estoque
+    participant Pag as Serviço Pagamento
+    Ped->>Est: reservar item
+    Est-->>Ped: OK ✓
+    Ped->>Pag: cobrar cartão
+    Pag-->>Ped: FALHA ✗
+    Note over Ped,Est: compensação (desfazer o que já foi feito)
+    Ped->>Est: liberar reserva (compensa)
+    Est-->>Ped: OK
+    Note over Ped: pedido cancelado — consistência restaurada

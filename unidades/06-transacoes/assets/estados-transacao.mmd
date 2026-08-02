@@ -1,0 +1,9 @@
+stateDiagram-v2
+    [*] --> Ativa
+    Ativa --> ParcialmenteEfetivada: última operação executada
+    Ativa --> Falha: erro / violação
+    ParcialmenteEfetivada --> Efetivada: COMMIT (gravado em disco)
+    ParcialmenteEfetivada --> Falha: erro
+    Falha --> Abortada: ROLLBACK (desfaz via LOG)
+    Efetivada --> [*]
+    Abortada --> [*]
