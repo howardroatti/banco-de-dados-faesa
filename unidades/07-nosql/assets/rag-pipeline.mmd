@@ -1,0 +1,10 @@
+flowchart LR
+    D[Documentos<br/>PDF · texto · site] --> E[Modelo de<br/>embeddings]
+    E --> V[(Banco vetorial<br/>pgvector · Chroma)]
+    Q[Pergunta do<br/>usuário] --> E2[Embedding<br/>da pergunta]
+    E2 --> S{Busca por<br/>similaridade}
+    V --> S
+    S --> C[Contexto<br/>relevante]
+    C --> L[LLM]
+    Q --> L
+    L --> R[Resposta<br/>fundamentada]

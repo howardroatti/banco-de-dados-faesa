@@ -16,7 +16,7 @@ As apresentações são escritas em **[Marp](https://marp.app/)** (Markdown → 
 | 4 | Modelagem Relacional de Dados (conceitual + lógica com Mermaid) | ⏳ |
 | 5 | Linguagem SQL (DDL/DML/consultas) + [Procedimentos Armazenados](unidades/05-sql/procedimentos-armazenados.md) | ✅ |
 | 6 | [Processamento de Transações](unidades/06-transacoes/transacoes.md) | ✅ |
-| 7 | Bancos de Dados NoSQL / não estruturados | ⏳ |
+| 7 | Bancos de Dados NoSQL — [Conceitos](unidades/07-nosql/nosql-conceitos.md) · [MongoDB na VM](unidades/07-nosql/mongodb-na-vm.md) · [De SQL para MongoDB](unidades/07-nosql/de-sql-para-mongodb.md) | ✅ |
 
 *(⏳ = em produção · ✅ = publicado)*
 

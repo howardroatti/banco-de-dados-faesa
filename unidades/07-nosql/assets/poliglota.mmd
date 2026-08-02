@@ -1,0 +1,6 @@
+flowchart TD
+    App[Aplicação] --> R[(Relacional · PostgreSQL<br/>pedidos, transações)]
+    App --> Doc[(Documento · MongoDB<br/>catálogo de produtos)]
+    App --> KV[(Chave-valor · Redis<br/>cache e sessão)]
+    App --> G[(Grafo · Neo4j<br/>recomendações)]
+    App --> Vec[(Vetorial · pgvector<br/>busca semântica / IA)]
