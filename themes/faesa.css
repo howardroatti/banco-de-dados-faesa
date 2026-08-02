@@ -5,14 +5,14 @@
 @import 'default';
 
 :root {
-  --faesa-azul: #0d2b57;
-  --faesa-azul-claro: #12437f;
-  --faesa-verde: #0d3b2e;
-  --faesa-ciano: #2bb0a3;
+  --faesa-azul: #0d2b57;         /* azul escuro (primária) */
+  --faesa-azul-claro: #12437f;   /* azul médio */
+  --faesa-ardosia: #334155;      /* azul-ardósia (slate) p/ divisórias */
+  --faesa-aco: #4f6d94;          /* azul-aço (acento) */
   --faesa-cinza: #1f2937;
   --faesa-cinza-claro: #6b7280;
   --faesa-borda: #cbd5e1;
-  --faesa-fundo-suave: #eef4fb;
+  --faesa-fundo-suave: #eef4fb;  /* azul bem claro */
 }
 
 section {
@@ -64,12 +64,14 @@ section.capa code { background: rgba(255,255,255,.15); color: #fff; }
 
 /* ===== Slide de seção/divisória: <!-- _class: secao --> ===== */
 section.secao {
-  background: var(--faesa-verde); color: #fff; justify-content: center;
+  background: linear-gradient(135deg, var(--faesa-ardosia) 0%, #24344d 100%);
+  color: #fff; justify-content: center;
 }
 section.secao h1, section.secao h2 { color: #fff; border: none; }
+section.secao h3 { color: #c7d2e0; }
 
 /* ===== Caixas de destaque: use <div class="dica"> / .aviso / .vm ===== */
-.dica  { background: #eaf6ef; border-left: 6px solid var(--faesa-ciano); padding: 10px 16px; border-radius: 6px; }
+.dica  { background: var(--faesa-fundo-suave); border-left: 6px solid var(--faesa-aco); padding: 10px 16px; border-radius: 6px; }
 .aviso { background: #fff8e1; border-left: 6px solid #f0c36d; padding: 10px 16px; border-radius: 6px; }
 .vm    { background: var(--faesa-fundo-suave); border-left: 6px solid var(--faesa-azul); padding: 10px 16px; border-radius: 6px; }
 .cols  { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
