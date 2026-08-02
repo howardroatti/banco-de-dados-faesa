@@ -1,0 +1,16 @@
+# Dependências
+node_modules/
+
+# Exportações pesadas (regeneráveis a partir do .md)
+*.pdf
+*.pptx
+
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporários de editor
+*.tmp
+*~
+.vscode/

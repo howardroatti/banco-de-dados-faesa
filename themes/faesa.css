@@ -1,0 +1,75 @@
+/* @theme faesa
+ * Tema Marp — Banco de Dados · FAESA · Prof. M.Sc. Howard Cruz Roatti
+ * Uso: marp deck.md --theme themes/faesa.css -o deck.html
+ */
+@import 'default';
+
+:root {
+  --faesa-azul: #0d2b57;
+  --faesa-azul-claro: #12437f;
+  --faesa-verde: #0d3b2e;
+  --faesa-ciano: #2bb0a3;
+  --faesa-cinza: #1f2937;
+  --faesa-cinza-claro: #6b7280;
+  --faesa-borda: #cbd5e1;
+  --faesa-fundo-suave: #eef4fb;
+}
+
+section {
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-size: 24px;
+  color: var(--faesa-cinza);
+  padding: 56px 64px 72px 64px;
+  background: #ffffff;
+}
+
+/* Títulos */
+h1 { color: var(--faesa-azul); font-size: 40px; margin: 0 0 12px; }
+h2 { color: var(--faesa-azul); font-size: 30px; border-bottom: 3px solid var(--faesa-fundo-suave); padding-bottom: 6px; }
+h3 { color: var(--faesa-azul-claro); font-size: 24px; }
+strong { color: var(--faesa-azul-claro); }
+a { color: var(--faesa-azul-claro); }
+
+/* Listas */
+ul, ol { line-height: 1.5; }
+li { margin: 4px 0; }
+
+/* Código */
+code { background: #f1f5f9; padding: 1px 6px; border-radius: 4px; font-size: 0.85em; }
+pre {
+  background: #0d1b2e; color: #e6edf6; border-radius: 10px;
+  padding: 16px 18px; font-size: 18px; line-height: 1.45;
+  box-shadow: 0 2px 10px rgba(13,43,87,.15);
+}
+pre code { background: transparent; color: inherit; padding: 0; }
+
+/* Tabelas */
+table { border-collapse: collapse; font-size: 19px; }
+th, td { border: 1px solid var(--faesa-borda); padding: 6px 12px; }
+th { background: var(--faesa-fundo-suave); color: var(--faesa-azul); text-align: left; }
+
+/* Rodapé e paginação */
+footer { color: var(--faesa-cinza-claro); font-size: 13px; }
+section::after { color: var(--faesa-cinza-claro); font-size: 13px; }
+
+/* ===== Slide de capa: <!-- _class: capa --> ===== */
+section.capa {
+  background: linear-gradient(135deg, var(--faesa-azul) 0%, var(--faesa-azul-claro) 100%);
+  color: #fff; justify-content: center;
+}
+section.capa h1 { color: #fff; font-size: 52px; }
+section.capa h2 { color: #a9c2e8; border: none; font-size: 26px; }
+section.capa strong { color: #fff; }
+section.capa code { background: rgba(255,255,255,.15); color: #fff; }
+
+/* ===== Slide de seção/divisória: <!-- _class: secao --> ===== */
+section.secao {
+  background: var(--faesa-verde); color: #fff; justify-content: center;
+}
+section.secao h1, section.secao h2 { color: #fff; border: none; }
+
+/* ===== Caixas de destaque: use <div class="dica"> / .aviso / .vm ===== */
+.dica  { background: #eaf6ef; border-left: 6px solid var(--faesa-ciano); padding: 10px 16px; border-radius: 6px; }
+.aviso { background: #fff8e1; border-left: 6px solid #f0c36d; padding: 10px 16px; border-radius: 6px; }
+.vm    { background: var(--faesa-fundo-suave); border-left: 6px solid var(--faesa-azul); padding: 10px 16px; border-radius: 6px; }
+.cols  { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }

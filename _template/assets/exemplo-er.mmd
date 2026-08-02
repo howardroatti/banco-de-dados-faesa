@@ -1,0 +1,16 @@
+erDiagram
+    ALUNOS ||--o{ MATRICULAS : possui
+    DISCIPLINAS ||--o{ MATRICULAS : recebe
+    ALUNOS {
+        int matricula PK
+        string nome
+    }
+    DISCIPLINAS {
+        int codigo PK
+        string nome
+    }
+    MATRICULAS {
+        int matricula FK
+        int codigo FK
+        string periodo
+    }
