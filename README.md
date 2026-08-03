@@ -12,8 +12,8 @@ As apresentações são escritas em **[Marp](https://marp.app/)** (Markdown → 
 |---|---|---|
 | 1 | Conceitos de Banco de Dados | ⏳ |
 | 2 | Arquitetura para Banco de Dados | ⏳ |
-| 3 | Introdução a Banco de Dados Relacional (+ Álgebra Relacional) | ⏳ |
-| 4 | Modelagem Relacional — [Conceitual (ER)](unidades/04-modelagem/modelagem-conceitual.md) · [Lógica (→ tabelas)](unidades/04-modelagem/modelagem-logica.md) | ✅ |
+| 3 | Modelo Relacional — [Introdução (Codd)](unidades/03-relacional/introducao-relacional.md) · [Álgebra](unidades/03-relacional/algebra-relacional.md) · [Views, SQL e Indexação](unidades/03-relacional/views-sql-indexacao.md) | ✅ |
+| 4 | Modelagem Relacional — [Conceitual (ER)](unidades/04-modelagem/modelagem-conceitual.md) · [Lógica](unidades/04-modelagem/modelagem-logica.md) · [Normalização](unidades/04-modelagem/normalizacao.md) | ✅ |
 | 5 | Linguagem SQL (DDL/DML/consultas) + [Procedimentos Armazenados](unidades/05-sql/procedimentos-armazenados.md) | ✅ |
 | 6 | [Processamento de Transações](unidades/06-transacoes/transacoes.md) | ✅ |
 | 7 | Bancos de Dados NoSQL — [Conceitos](unidades/07-nosql/nosql-conceitos.md) · [MongoDB na VM](unidades/07-nosql/mongodb-na-vm.md) · [De SQL para MongoDB](unidades/07-nosql/de-sql-para-mongodb.md) | ✅ |
