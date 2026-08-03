@@ -1,0 +1,16 @@
+classDiagram
+    class PESSOAS {
+      +codigo
+      +endereco
+      +telefones
+    }
+    class FISICAS {
+      +cpf
+      +nome
+    }
+    class JURIDICAS {
+      +cnpj
+      +razao_social
+    }
+    PESSOAS <|-- FISICAS
+    PESSOAS <|-- JURIDICAS

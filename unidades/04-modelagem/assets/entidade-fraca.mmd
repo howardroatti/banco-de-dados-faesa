@@ -1,0 +1,12 @@
+erDiagram
+    EMPREGADOS ||--o{ DEPENDENTES : possui
+    EMPREGADOS {
+        int matricula PK
+        string nome
+        date data_admissao
+    }
+    DEPENDENTES {
+        int matricula PK "FK p/ empregado"
+        int sequencia PK "diferenciador"
+        string nome
+    }

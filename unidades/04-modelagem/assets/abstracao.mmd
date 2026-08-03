@@ -1,0 +1,9 @@
+flowchart LR
+    A[Mundo Real<br/>entes e fatos] --> B[Modelo Conceitual<br/>Diagrama ER]
+    B --> C[Modelo Lógico<br/>tabelas, PK/FK]
+    C --> D[Modelo Físico<br/>SGBD específico]
+    A -.- a([o negócio]):::n
+    B -.- b([independe do SGBD]):::n
+    C -.- c([relacional]):::n
+    D -.- d([Oracle/PG/MySQL]):::n
+    classDef n fill:#eef4fb,stroke:#cbd5e1,color:#334155;

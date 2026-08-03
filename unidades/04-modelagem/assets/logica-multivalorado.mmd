@@ -1,0 +1,10 @@
+erDiagram
+    CLIENTES ||--o{ TELEFONES_CLIENTES : tem
+    CLIENTES {
+        int codigo PK
+        string razao_social
+    }
+    TELEFONES_CLIENTES {
+        int codigo FK
+        string telefone
+    }
