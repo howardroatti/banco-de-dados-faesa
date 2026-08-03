@@ -86,7 +86,20 @@ O semestre tem **três ciclos** de avaliação — **C1, C2 e C3**. Cada ciclo v
 | **A1** | 2,0 | Questionário / atividade no AVA |
 | **A2** | 8,0 | Prova ou trabalho (individual/grupo) |
 
-<div class="dica">💡 As <strong>datas de cada A1/A2</strong> e as entregas em grupo estão no <strong>Cronograma Quinzenal</strong> da sua turma, no AVA.</div>
+<div class="dica">💡 As <strong>datas de cada A1/A2</strong> e as entregas em grupo estão no <strong>Cronograma Quinzenal</strong> da sua turma — veja o link no próximo slide.</div>
+
+---
+
+## Avaliações — cronograma da sua turma
+
+Quando serão as avaliações (A1/A2 de **C1, C2 e C3**)? Abra o **quadro da sua turma**:
+
+- 🖥️ **4HC1 — Ciência da Computação** · [ver cronograma](https://ava.faesa.br/content/enforced/87384-2026_2_D009519_CI-1010-262-4HC1/Cronograma_BD_2026-2.html)
+- 🖥️ **4HC1A — Ciência da Computação** · [ver cronograma](https://ava.faesa.br/content/enforced/87385-2026_2_D009519_CI-1010-262-4HC1A/Cronograma_BD_2026-2.html)
+- 🖥️ **4SC1 — Sistemas de Informação** · [ver cronograma](https://ava.faesa.br/content/enforced/87391-2026_2_D009519_CI-1006-262-4SC1/Cronograma_BD_2026-2.html)
+- 🖥️ **4DC1 — Análise e Desenv. de Sistemas (TADS)** · [ver cronograma](https://ava.faesa.br/content/enforced/87386-2026_2_D009519_CI-1014-262-4DC1/Cronograma_BD_2026-2.html)
+
+<div class="aviso">Os links abrem <strong>no AVA</strong> — é preciso estar logado e matriculado na turma.</div>
 
 ---
 
