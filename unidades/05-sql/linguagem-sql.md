@@ -24,7 +24,7 @@ Prof. M.Sc. Howard Cruz Roatti
 - **DQL** — consultar (`SELECT`): filtros, junções, agregações, subconsultas
 - **Portabilidade** Oracle / PostgreSQL / MySQL
 
-<div class="vm">🖥️ Todos os exemplos saem do <strong>Roteiro Prático de SQL</strong> e rodam na <strong>VM LabDatabase</strong>. O roteiro completo está em <code>unidades/05-sql/roteiro-pratico/</code>.</div>
+<div class="vm">🖥️ Todos os exemplos saem do <strong>Roteiro Prático de SQL</strong> e rodam na <strong>VM LabDatabase</strong>.</div>
 
 ---
 
@@ -377,12 +377,12 @@ SELECT CLI.*
 
 ## Para praticar
 
-- O **Roteiro Prático de SQL** traz **dezenas** de exercícios resolvidos, em partes:
-  - **Parte 1** — DDL (criar todo o esquema acadêmico)
-  - **Parte 2** — DML (insert/update/delete + selects)
+- Você vai exercitar DDL, DML e DQL no **Roteiro Prático de SQL**, em partes:
+  - **Parte 1** — DDL (montar o esquema acadêmico)
+  - **Parte 2** — DML (insert/update/delete + consultas)
   - **Parte 3** — DQL avançado (domínio de vendas)
 
-<div class="vm">🖥️ Arquivos em <code>unidades/05-sql/roteiro-pratico/</code>: os <code>Scripts/</code> (.sql), o roteiro em PDF e o diagrama do banco. Rode na VM LabDatabase.</div>
+<div class="vm">🖥️ O roteiro é trabalhado <strong>em aula</strong>, na <strong>VM LabDatabase</strong>. O enunciado é disponibilizado pelo professor no AVA.</div>
 
 ---
 
