@@ -90,14 +90,14 @@ O semestre tem **três ciclos** de avaliação — **C1, C2 e C3**. Cada ciclo v
 
 ---
 
-## Avaliações — cronograma da sua turma
+## Avaliações — quadro da sua turma
 
-Quando serão as avaliações (A1/A2 de **C1, C2 e C3**)? Abra o **quadro da sua turma**:
+Quando serão as avaliações (A1/A2 de **C1, C2 e C3**), com pontuação e instrumentos? Abra o **quadro de avaliações da sua turma**:
 
-- 🖥️ **4HC1 — Ciência da Computação** · [ver cronograma](https://ava.faesa.br/content/enforced/87384-2026_2_D009519_CI-1010-262-4HC1/Cronograma_BD_2026-2.html)
-- 🖥️ **4HC1A — Ciência da Computação** · [ver cronograma](https://ava.faesa.br/content/enforced/87385-2026_2_D009519_CI-1010-262-4HC1A/Cronograma_BD_2026-2.html)
-- 🖥️ **4SC1 — Sistemas de Informação** · [ver cronograma](https://ava.faesa.br/content/enforced/87391-2026_2_D009519_CI-1006-262-4SC1/Cronograma_BD_2026-2.html)
-- 🖥️ **4DC1 — Análise e Desenv. de Sistemas (TADS)** · [ver cronograma](https://ava.faesa.br/content/enforced/87386-2026_2_D009519_CI-1014-262-4DC1/Cronograma_BD_2026-2.html)
+- 🖥️ **4HC1 — Ciência da Computação** · [ver avaliações](https://ava.faesa.br/content/enforced/87384-2026_2_D009519_CI-1010-262-4HC1/Clique%20aqui%20para%20acessar%20as%20avalia%C3%A7%C3%B5es.html)
+- 🖥️ **4HC1A — Ciência da Computação** · [ver avaliações](https://ava.faesa.br/content/enforced/87385-2026_2_D009519_CI-1010-262-4HC1A/Clique%20aqui%20para%20acessar%20as%20avalia%C3%A7%C3%B5es.html)
+- 🖥️ **4SC1 — Sistemas de Informação** · [ver avaliações](https://ava.faesa.br/content/enforced/87391-2026_2_D009519_CI-1006-262-4SC1/Clique%20aqui%20para%20acessar%20as%20avalia%C3%A7%C3%B5es.html)
+- 🖥️ **4DC1 — Análise e Desenv. de Sistemas (TADS)** · [ver avaliações](https://ava.faesa.br/content/enforced/87386-2026_2_D009519_CI-1014-262-4DC1/Clique%20aqui%20para%20acessar%20as%20avalia%C3%A7%C3%B5es.html)
 
 <div class="aviso">Os links abrem <strong>no AVA</strong> — é preciso estar logado e matriculado na turma.</div>
 
