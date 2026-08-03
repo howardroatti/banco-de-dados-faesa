@@ -2,7 +2,7 @@
 marp: true
 theme: faesa
 paginate: true
-footer: 'Prof. M.Sc. Howard Cruz Roatti · FAESA · Banco de Dados · 2026/2'
+footer: 'Prof. M.Sc. Howard Cruz Roatti · FAESA · Banco de Dados · 2026/2 · [☰ Sumário](../../index.html)'
 ---
 
 <!-- _class: capa -->
