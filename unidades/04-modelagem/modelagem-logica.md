@@ -171,3 +171,6 @@ Pegue os ERs que você modelou na Parte 1 (**Controle de Pedidos** e **Jogos/RPG
 
 # Dúvidas?
 ### howard.cruz@faesa.br
+
+
+<a class="proximo" href="normalizacao.html">Próximo →<small>Normalização</small></a>

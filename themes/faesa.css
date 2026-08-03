@@ -69,6 +69,24 @@ section.secao {
 }
 section.secao h1, section.secao h2 { color: #fff; border: none; }
 section.secao h3 { color: #c7d2e0; }
+section.secao a:not(.proximo) { color: #dbe4f0; }
+
+/* ===== Link "Próxima unidade" no último slide (botão) ===== */
+a.proximo {
+  display: inline-block;
+  margin-top: 0.9em;
+  padding: 0.5em 1.1em;
+  border: 2px solid var(--faesa-aco);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.10);
+  color: #fff;
+  font-size: 0.62em;
+  font-weight: 600;
+  line-height: 1.35;
+  text-decoration: none;
+}
+a.proximo:hover { background: rgba(255, 255, 255, 0.22); }
+a.proximo small { display: block; font-weight: 400; color: #c7d2e0; font-size: 0.85em; }
 
 /* ===== Caixas de destaque: use <div class="dica"> / .aviso / .vm ===== */
 .dica  { background: var(--faesa-fundo-suave); border-left: 6px solid var(--faesa-aco); padding: 10px 16px; border-radius: 6px; }
