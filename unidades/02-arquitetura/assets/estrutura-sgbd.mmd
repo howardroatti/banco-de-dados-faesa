@@ -1,0 +1,13 @@
+flowchart TB
+  Users([Usuários · Aplicações · DBA]) --> IF[Interfaces / Sublinguagem · DDL · DML · DQL]
+  IF --> QP[<b>Processador de Consultas</b><br/>interpretador DDL · compilador/pré-compilador DML · otimizador · executor]
+  QP --> SM[<b>Gerenciador de Armazenamento</b><br/>autorização e integridade · transações · arquivos · buffer]
+  SM --> D1[(Dados)]
+  SM --> D2[(Dicionário<br/>de dados)]
+  SM --> D3[(Índices)]
+  SM --> D4[(Estatísticas)]
+
+  classDef proc fill:#dfe8f3,stroke:#12437f,color:#0d2b57;
+  classDef store fill:#d6e0ee,stroke:#334155,color:#0d2b57;
+  class QP,SM proc;
+  class D1,D2,D3,D4 store;

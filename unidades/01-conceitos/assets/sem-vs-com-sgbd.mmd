@@ -1,0 +1,10 @@
+flowchart TB
+  subgraph SEM["❌ Sem SGBD (arquivos avulsos)"]
+    direction LR
+    P1[Programa] <--> SO1[Sistema<br/>Operacional] <--> A1[(Arquivos<br/>dispersos)]
+  end
+  subgraph COM["✅ Com SGBD"]
+    direction LR
+    P2[Programas /<br/>Aplicações] <--> DB[SGBD] <--> SO2[Sistema<br/>Operacional] <--> BD[(Banco de<br/>Dados)]
+  end
+  SEM ~~~ COM

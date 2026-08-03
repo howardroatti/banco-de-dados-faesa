@@ -1,0 +1,17 @@
+flowchart TB
+  U1([Usuário A]) --> E1[Visão Externa A]
+  U2([Usuário B]) --> E2[Visão Externa B]
+  U3([Usuário C]) --> E3[Visão Externa C]
+  E1 -->|mapeamento<br/>externo/conceitual| C
+  E2 --> C
+  E3 --> C
+  C[Esquema Conceitual<br/><i>o que os dados são</i>]
+  C -->|mapeamento<br/>conceitual/interno| I[Esquema Interno / Físico<br/><i>como são armazenados</i>]
+  I --> D[(Armazenamento<br/>em disco)]
+
+  classDef ext fill:#e8eef7,stroke:#4f6d94,color:#0d2b57;
+  classDef con fill:#dfe8f3,stroke:#12437f,color:#0d2b57;
+  classDef int fill:#d6e0ee,stroke:#334155,color:#0d2b57;
+  class E1,E2,E3 ext;
+  class C con;
+  class I int;

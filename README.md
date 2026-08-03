@@ -4,14 +4,16 @@ Material didático da disciplina **Banco de Dados** (código D009519) do **Prof.
 
 As apresentações são escritas em **[Marp](https://marp.app/)** (Markdown → slides), versionadas e com diagramas em **Mermaid**. Isso torna o material fácil de manter, versionar e reutilizar.
 
-> 🎯 Este repositório está em **modernização por ondas** (2026/2). Os decks vão sendo publicados/atualizados unidade a unidade.
+> 🎯 Este repositório reúne o material **modernizado** da disciplina (2026/2), unidade a unidade.
+
+**Comece por aqui:** [Apresentação da Disciplina](unidades/00-apresentacao/apresentacao-disciplina.md) (ementa, avaliação, ambiente e bibliografia).
 
 ## Índice por unidade
 
 | Unidade | Tópico | Status |
 |---|---|---|
-| 1 | Conceitos de Banco de Dados | ⏳ |
-| 2 | Arquitetura para Banco de Dados | ⏳ |
+| 1 | [Conceitos de Banco de Dados](unidades/01-conceitos/conceitos-bd.md) | ✅ |
+| 2 | [Arquitetura para Banco de Dados](unidades/02-arquitetura/arquitetura-bd.md) | ✅ |
 | 3 | Modelo Relacional — [Introdução (Codd)](unidades/03-relacional/introducao-relacional.md) · [Álgebra](unidades/03-relacional/algebra-relacional.md) · [Views, SQL e Indexação](unidades/03-relacional/views-sql-indexacao.md) | ✅ |
 | 4 | Modelagem Relacional — [Conceitual (ER)](unidades/04-modelagem/modelagem-conceitual.md) · [Lógica](unidades/04-modelagem/modelagem-logica.md) · [Normalização](unidades/04-modelagem/normalizacao.md) | ✅ |
 | 5 | Linguagem SQL (DDL/DML/consultas) + [Procedimentos Armazenados](unidades/05-sql/procedimentos-armazenados.md) | ✅ |
