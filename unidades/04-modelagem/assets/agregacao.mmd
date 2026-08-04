@@ -1,0 +1,13 @@
+flowchart LR
+  subgraph AGG["ITENS PEDIDO — agregado"]
+    direction LR
+    PC[PEDIDOS DE COMPRA] ---|"(0,N)"| R1{REQUISITAM}
+    R1 ---|"(1,N)"| MAT[MATERIAIS]
+  end
+  AGG ---|"(1,1)"| R2{ATENDEM}
+  R2 ---|"(0,N)"| OC[ORDENS DE COMPRA]
+
+  classDef ent fill:#dfe8f3,stroke:#12437f,color:#0d2b57;
+  classDef rel fill:#eef4fb,stroke:#4f6d94,color:#0d2b57;
+  class PC,MAT,OC ent;
+  class R1,R2 rel;

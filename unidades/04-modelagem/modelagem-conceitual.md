@@ -167,4 +167,4 @@ Quantas ocorrências de uma entidade se associam a outra:
 ### howard.cruz@faesa.br
 
 
-<a class="proximo" href="modelagem-logica.html">Próximo →<small>Modelagem Lógica (→ tabelas)</small></a>
+<a class="proximo" href="modelagem-conceitual-avancada.html">Próximo →<small>Modelagem Conceitual — Aprofundando</small></a>
