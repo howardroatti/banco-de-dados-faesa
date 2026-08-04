@@ -173,4 +173,4 @@ Pegue os ERs que você modelou na Parte 1 (**Controle de Pedidos** e **Jogos/RPG
 ### howard.cruz@faesa.br
 
 
-<a class="proximo" href="normalizacao.html">Próximo →<small>Normalização</small></a>
+<a class="proximo" href="modelagem-logica-avancada.html">Próximo →<small>Modelagem Lógica — Aprofundando</small></a>
