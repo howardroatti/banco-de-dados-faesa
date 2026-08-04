@@ -1,0 +1,6 @@
+flowchart LR
+  TA([Transação A<br/>detém R1]) -->|espera por R2| TB([Transação B<br/>detém R2])
+  TB -->|espera por R1| TA
+
+  classDef t fill:#dfe8f3,stroke:#12437f,color:#0d2b57;
+  class TA,TB t;

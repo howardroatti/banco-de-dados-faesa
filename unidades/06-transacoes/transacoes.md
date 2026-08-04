@@ -203,4 +203,4 @@ COMMIT;   -- (ou ROLLBACK se algo falhar)
 ### howard.cruz@faesa.br
 
 
-<a class="proximo" href="../07-nosql/nosql-conceitos.html">Próxima unidade →<small>Unidade 7 — NoSQL (Conceitos)</small></a>
+<a class="proximo" href="concorrencia-recuperacao.html">Próximo →<small>Controle de Concorrência e Recuperação</small></a>

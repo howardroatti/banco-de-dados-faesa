@@ -17,7 +17,7 @@ As apresentações são escritas em **[Marp](https://marp.app/)** (Markdown → 
 | 3 | Modelo Relacional — [Introdução (Codd)](unidades/03-relacional/introducao-relacional.md) · [Álgebra](unidades/03-relacional/algebra-relacional.md) · [Views, SQL e Indexação](unidades/03-relacional/views-sql-indexacao.md) | ✅ |
 | 4 | Modelagem Relacional — [Conceitual (ER)](unidades/04-modelagem/modelagem-conceitual.md) · [Lógica](unidades/04-modelagem/modelagem-logica.md) · [Normalização](unidades/04-modelagem/normalizacao.md) | ✅ |
 | 5 | [Linguagem SQL (DDL/DML/DQL)](unidades/05-sql/linguagem-sql.md) · [Procedimentos Armazenados](unidades/05-sql/procedimentos-armazenados.md) | ✅ |
-| 6 | [Processamento de Transações](unidades/06-transacoes/transacoes.md) | ✅ |
+| 6 | Processamento de Transações — [Transações e ACID](unidades/06-transacoes/transacoes.md) · [Concorrência e Recuperação](unidades/06-transacoes/concorrencia-recuperacao.md) | ✅ |
 | 7 | Bancos de Dados NoSQL — [Conceitos](unidades/07-nosql/nosql-conceitos.md) · [MongoDB na VM](unidades/07-nosql/mongodb-na-vm.md) · [De SQL para MongoDB](unidades/07-nosql/de-sql-para-mongodb.md) | ✅ |
 
 *(⏳ = em produção · ✅ = publicado)*

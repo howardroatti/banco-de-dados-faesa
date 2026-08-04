@@ -1,0 +1,9 @@
+flowchart LR
+  T([Transação<br/>write ID: V1→V2]) -->|1 · registra ANTES| LOG[(Arquivo de LOG<br/>⟨T, ID, V1, V2⟩)]
+  T -->|2 · só então altera| BD[(Banco de Dados)]
+  LOG -.->|habilita| UR[UNDO desfaz abortadas<br/>REDO refaz confirmadas]
+
+  classDef log fill:#dfe8f3,stroke:#12437f,color:#0d2b57;
+  classDef bd fill:#d6e0ee,stroke:#334155,color:#0d2b57;
+  class LOG log;
+  class BD bd;
