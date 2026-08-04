@@ -20,7 +20,7 @@ Prof. M.Sc. Howard Cruz Roatti
 
 - Conjunto de **operadores** que recebem **relações** e produzem uma **nova relação** (derivam tabelas de outras tabelas).
 - É a base **formal** das consultas SQL (`SELECT` = seleção + projeção + junção…).
-- Operações: **seleção, projeção, união, interseção, diferença, produto cartesiano, junções, agregação, atribuição**.
+- Operações: **seleção, projeção, união, interseção, diferença, produto cartesiano, junções, divisão, agregação, renomeação e atribuição**.
 
 <div class="dica">💡 Toda operação da álgebra <strong>fecha</strong> sobre relações: a entrada é relação, a saída também. Por isso é possível <strong>compor</strong> operações.</div>
 
@@ -223,9 +223,10 @@ Operam sobre um **conjunto de valores** e retornam **um único valor**: `SUM, CO
 
 ---
 
-## Atribuição (←) e Projeção Generalizada
+## Atribuição (←), Renomeação (ρ) e Projeção Generalizada
 
 - **Atribuição:** guarda um resultado parcial em uma variável → `nome_cli ← Π nomecli (NFV)`.
+- **Renomeação (ρ):** renomeia uma relação ou seus atributos → `ρ M2(cod, nome, val) (M)`. Essencial para **auto-junções** (juntar uma tabela com uma cópia de si mesma).
 - **Projeção Generalizada:** permite **expressões aritméticas** na lista de projeção.
 
 **Objetivo:** preço com 50% de desconto → Π *no-mat, nomemat, preço * 0,5* (M)
@@ -237,6 +238,33 @@ Operam sobre um **conjunto de valores** e retornam **um único valor**: `SUM, CO
 
 ---
 
+## Divisão — ÷
+
+**Sintaxe:** R ÷ S — responde perguntas do tipo **"para TODO"**: tuplas de R associadas a **todos** os valores de S.
+
+**Objetivo:** fornecedores que forneceram **todos** os materiais de `S = {3, 4}`
+
+<div class="cols">
+<div>
+
+`R = Π nomefor, no-mat (NFC)` ÷ `S = {3, 4}`
+
+| nomefor |
+|--|
+| Regina |
+
+</div>
+<div>
+
+<div class="dica">💡 Só <strong>Regina</strong> aparece com o material 3 <strong>e</strong> o 4. É o quantificador <strong>universal</strong> (∀).</div>
+
+</div>
+</div>
+
+<div class="aviso">A SQL não tem operador de divisão — expressa-se com <strong>dupla negação</strong> (<code>NOT EXISTS ... NOT EXISTS</code>).</div>
+
+---
+
 ## Da Álgebra ao SQL
 
 | Álgebra | SQL |
@@ -245,6 +273,7 @@ Operam sobre um **conjunto de valores** e retornam **um único valor**: `SUM, CO
 | Π (projeção) | `SELECT colunas` |
 | ⋈ (junção) | `JOIN` |
 | ∪ / ∩ / − | `UNION` / `INTERSECT` / `EXCEPT` |
+| ÷ (divisão) | `NOT EXISTS` (dupla negação) |
 | Ƒ (agregação) | `GROUP BY` + `SUM/AVG/...` |
 
 <div class="dica">💡 Entender a álgebra ajuda a <strong>ler, escrever e otimizar</strong> consultas SQL — próxima unidade.</div>

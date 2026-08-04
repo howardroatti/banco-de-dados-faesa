@@ -41,6 +41,14 @@ Prof. M.Sc. Howard Cruz Roatti
 
 ---
 
+## Estrutura de uma View
+
+![h:400 center](assets/estrutura-view.svg)
+
+A view guarda **só a definição** (no catálogo); os dados continuam nas **tabelas base**.
+
+---
+
 ## Definindo Views
 
 ```sql
@@ -126,6 +134,16 @@ CREATE INDEX alunos_nome_idx ON alunos(nome);
 |---|---|---|---|
 | Denso | todas as chaves | maior | direta |
 | Esparso | algumas chaves | menor | aproxima + varre |
+
+---
+
+## Índices Multiníveis
+
+- Se o próprio índice fica **grande demais** para varrer rápido, cria-se um **índice sobre o índice**.
+- O nível de cima (esparso) aponta para **blocos** do nível de baixo → forma uma **árvore** de níveis.
+- Reduz a busca de **linear** (varrer o índice) para **logarítmica** — poucos acessos a disco.
+
+<div class="dica">💡 É a ideia por trás dos índices <strong>B-tree / B+-tree</strong>, o tipo padrão na maioria dos SGBDs.</div>
 
 ---
 
