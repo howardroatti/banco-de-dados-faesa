@@ -29,26 +29,30 @@ Do **modelo conceitual** ao **SQL** em produção, passando por **transações**
 
 ## Ementa
 
-- Conceitos de banco de dados e SGBD.
-- Arquitetura ANSI/SPARC e independência de dados.
-- Modelo relacional, modelagem conceitual (ER) e lógica.
-- Normalização de dados.
-- Linguagem **SQL** (DDL, DML, DQL, DCL) e programação no servidor.
-- Processamento de **transações** (ACID, concorrência, recuperação).
-- Bancos de dados **NoSQL** e tendências (nuvem, dados vetoriais).
+- Banco de Dados Relacional.
+- Modelagem Relacional de Dados.
+- SQL – DDL e DML — Teoria e Prática.
+- Procedimentos Armazenados – Triggers e Procedures — noções básicas.
+- Processamento de Transações: conceitos e processamento concorrente.
+- Banco de Dados não estruturado.
 
 ---
 
-## Objetivos de aprendizagem
+## Objetivos (1/2)
 
-Ao final da disciplina, você será capaz de:
+1. **Descrever** os conceitos e a estrutura do Banco de Dados Relacional, especialmente quanto às questões de integridade, estrutura de armazenamento e formas de manipulação.
+2. **Aplicar** os conceitos de Modelagem Relacional de Dados e demonstrá-los através da elaboração de modelos lógicos.
+3. **Conhecer** a técnica de Normalização de Bases de Dados e aplicar tais conhecimentos na modelagem de problemas.
+4. **Escrever** comandos SQL (DDL e DML) para fornecer resposta a situações propostas.
 
-1. **Modelar** um domínio em diagramas ER e traduzi-lo em tabelas.
-2. **Normalizar** esquemas até 3FN/BCNF de forma justificada.
-3. **Escrever** consultas SQL — de simples a junções e agregações.
-4. **Programar** no servidor (views, procedures, funções, triggers).
-5. **Explicar** transações, isolamento e recuperação.
-6. **Escolher** entre relacional e NoSQL conforme o problema.
+---
+
+## Objetivos (2/2)
+
+5. **Desenvolver** programas para solução de problemas utilizando-se dos fundamentos de Stored Procedures e Triggers.
+6. **Descrever** o Processamento de Transações e as Transações Concorrentes.
+7. **Conhecer** os principais conceitos relacionados a Banco de Dados não estruturados ou não relacionais e as aplicações mais comuns.
+8. **Desenvolver** aplicações utilizando uma linguagem de programação com persistência em banco de dados estruturado e não estruturado.
 
 ---
 
@@ -56,13 +60,13 @@ Ao final da disciplina, você será capaz de:
 
 | # | Unidade |
 |---|---|
-| 1 | Conceitos de Banco de Dados |
-| 2 | Arquitetura para Banco de Dados |
-| 3 | Modelo Relacional (Codd, álgebra, views, indexação) |
-| 4 | Modelagem Relacional (ER, lógica, normalização) |
-| 5 | Linguagem SQL + Procedimentos Armazenados |
+| 1 | Conceitos Básicos de Gerenciamento de Banco de Dados |
+| 2 | Uma Arquitetura para Sistema de Banco de Dados |
+| 3 | Uma Introdução ao Banco de Dados Relacional |
+| 4 | Modelagem Relacional de Dados |
+| 5 | Teoria e Prática de SQL (DDL e DML) + Procedimentos Armazenados |
 | 6 | Processamento de Transações |
-| 7 | Bancos de Dados NoSQL |
+| 7 | Banco de Dados não estruturado |
 
 ---
 
@@ -112,16 +116,21 @@ Quando serão as avaliações (A1/A2 de **C1, C2 e C3**), com pontuação e inst
 
 ---
 
-## Bibliografia
+## Bibliografia — Básica
 
-**Básica**
-- ELMASRI, R.; NAVATHE, S. B. **Sistemas de Banco de Dados.** 7ª ed. Pearson, 2019.
-- DATE, C. J. **Introdução a Sistemas de Banco de Dados.** 8ª ed. Elsevier, 2004.
-- SILBERSCHATZ, A.; KORTH, H.; SUDARSHAN, S. **Sistema de Banco de Dados.** 7ª ed. Elsevier, 2020.
+- COUGO, P. **Modelagem Conceitual e Projeto de Bancos de Dados.** Rio de Janeiro: Campus, 1997.
+- ELMASRI, R.; NAVATHE, S. B. **Sistemas de Banco de Dados.** 6ª ed. São Paulo: Pearson Addison Wesley, 2011.
+- SILBERSCHATZ, A.; KORTH, H. F.; SUDARSHAN, S. **Sistemas de Banco de Dados.** 5ª ed. Rio de Janeiro: Elsevier, 2006.
 
-**Complementar**
-- HEUSER, C. A. **Projeto de Banco de Dados.** 6ª ed. Bookman, 2009.
-- SADALAGE, P.; FOWLER, M. **NoSQL Essencial.** Novatec, 2019.
+---
+
+## Bibliografia — Complementar
+
+- DATE, C. J. **Introdução a Sistemas de Bancos de Dados.** Rio de Janeiro: Elsevier, 2004.
+- GARCIA-MOLINA, H.; ULLMAN, J. D.; WIDOM, J. **Implementação de Sistemas de Bancos de Dados.** Rio de Janeiro: Campus, 2001.
+- HEUSER, C. A. **Projeto de Banco de Dados.** 6ª ed. Porto Alegre: Bookman, 2010.
+- SETZER, V. W. **Bancos de Dados.** 3ª ed. São Paulo: Edgard Blücher, 2000.
+- POMPILHO, S. **Análise Essencial: guia prático de Análise de Sistemas.** Rio de Janeiro: Ciência Moderna, 2002.
 
 ---
 
