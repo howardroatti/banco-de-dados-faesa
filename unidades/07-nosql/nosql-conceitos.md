@@ -19,8 +19,8 @@ Prof. M.Sc. Howard Cruz Roatti
 ## Nesta aula
 
 - **Tipos de dado** — estruturado, semiestruturado e não estruturado
-- **Por que NoSQL** — escala, esquema flexível e o **Teorema CAP**
-- **Famílias** — chave-valor, documento, coluna, grafo (e além)
+- **Por que NoSQL** — escala, agregados (DDD), **CAP** e **BASE**
+- **Famílias** — chave-valor, documento, coluna, grafo, **espacial** (e além)
 - **NoSQL na nuvem** — serviços gerenciados (DBaaS)
 - **NoSQL + IA** — **bancos vetoriais** e **RAG**
 - **SQL × NoSQL** — não é "melhor", é **adequação**
@@ -42,6 +42,14 @@ Prof. M.Sc. Howard Cruz Roatti
 | **Não estruturado** | sem esquema definido | texto, e-mail, imagem, áudio, vídeo |
 
 <div class="aviso">📊 Estima-se que a <strong>maior parte</strong> dos dados gerados hoje é <strong>não estruturada</strong> — e cresce mais rápido que a estruturada.</div>
+
+---
+
+## O dilúvio de dados não estruturados
+
+![h:380 center](assets/dados-nao-estruturados.svg)
+
+Estima-se que **~80%** dos dados do mundo sejam **não estruturados** (texto, e-mail, mídia) — e é justamente o que os bancos relacionais tradicionais **não** foram feitos para tratar.
 
 ---
 
@@ -72,6 +80,16 @@ Prof. M.Sc. Howard Cruz Roatti
 
 ---
 
+## Orientação a agregados (DDD)
+
+- O usuário quer trabalhar com dados como **unidades ricas** — um registro que **aninha** listas e outras estruturas.
+- Essa unidade é o **agregado**, termo do **Domain-Driven Design (DDD)**: *um conjunto de objetos relacionados tratado como uma só unidade*.
+- Define a **unidade de manipulação** e de **consistência** do dado — a base de **chave-valor**, **documento** e **família de colunas**.
+
+<div class="dica">💡 Guardar o "pedido + itens" como um agregado evita <code>JOIN</code>s e casa com o jeito que a aplicação usa o dado.</div>
+
+---
+
 ## Teorema CAP
 
 Em um sistema **distribuído**, na presença de uma **partição de rede (P)**, escolhe-se entre:
@@ -98,6 +116,18 @@ Em um sistema **distribuído**, na presença de uma **partição de rede (P)**, 
 </div>
 
 <div class="aviso">Consistência <strong>eventual</strong>: após um tempo sem novas escritas, todos os nós convergem para o mesmo valor.</div>
+
+---
+
+## De ACID a BASE
+
+Onde o relacional busca **ACID**, muitos NoSQL adotam **BASE**:
+
+- **B**asically **A**vailable — o sistema **sempre responde** (mesmo que com dado um pouco antigo).
+- **S**oft state — o estado **pode mudar** com o tempo, mesmo sem novas escritas (propaga-se entre nós).
+- **E**ventual consistency — os nós **convergem** depois; peça-chave é a **resolução de conflitos** quando o dado está em trânsito entre nós.
+
+<div class="dica">💡 ACID prioriza <strong>consistência</strong>; BASE prioriza <strong>disponibilidade e escala</strong> — de novo, é uma escolha por <em>adequação</em>.</div>
 
 ---
 
@@ -161,6 +191,17 @@ GET sessao:abc123
 </div>
 
 <div class="dica">Ainda há nichos: <strong>séries temporais</strong> (InfluxDB, TimescaleDB), <strong>espaciais</strong> (PostGIS) e <strong>busca</strong> (Elasticsearch).</div>
+
+---
+
+## Bancos de dados espaciais (GIS)
+
+Guardam e consultam **dados geográficos** — você usa todo dia no GPS, em "restaurante mais próximo", em mapas.
+
+- Padronizados pelo **OGC** (*Open Geospatial Consortium*) — o padrão **OpenGIS**.
+- Elementos atômicos: **ponto**, **linha** e **polígono**.
+- Objetos em **2D**, **2.5D** (2D + elevação → mapeamento **GIS**) e **3D**.
+- **Ex.:** um meteorologista modela um furacão (temperatura, vento, umidade) em 3D; **PostGIS** (extensão do PostgreSQL), MongoDB (índices geoespaciais).
 
 ---
 
