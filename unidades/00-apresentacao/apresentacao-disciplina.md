@@ -114,6 +114,8 @@ Quando serão as avaliações (A1/A2 de **C1, C2 e C3**), com pontuação e inst
 - **mongosh** para a parte de MongoDB.
 - **Git / GitHub** — material da disciplina versionado e sempre atualizado.
 
+<div class="dica">📎 Setup passo a passo no <strong>Apêndice — Laboratório</strong> (VirtualBox, Docker, DBeaver, mongosh, Compass).</div>
+
 ---
 
 ## Bibliografia — Básica

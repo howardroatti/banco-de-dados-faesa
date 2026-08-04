@@ -53,6 +53,8 @@ Requisitos: [Node.js](https://nodejs.org), `npm i -g @marp-team/marp-cli @mermai
 
 Os exemplos de SQL e MongoDB são pensados para rodar na **VM LabDatabase** da disciplina (Docker com Oracle, PostgreSQL, MySQL e MongoDB). Quando pertinente, os slides trazem notas de portabilidade entre SGBDs.
 
+📎 **Setup do laboratório:** [Apêndice — Laboratório (VM LabDatabase)](unidades/00-apresentacao/lab-vm.md) — importar a VM no VirtualBox, subir os containers Docker e conectar com **DBeaver**, **mongosh** e **MongoDB Compass**.
+
 ## Licença
 
 Material licenciado sob **[CC BY 4.0](LICENSE)** — você pode compartilhar e adaptar, inclusive comercialmente, desde que dê o devido crédito.
