@@ -43,6 +43,22 @@ pre {
 }
 pre code { background: transparent; color: inherit; padding: 0; }
 
+/* Realce de sintaxe — paleta CLARA p/ o fundo escuro do bloco (alto contraste).
+   O tema importado ('default') é feito p/ fundo claro; sem isto, strings/números/
+   comentários saem em azul-escuro sobre azul-escuro (ilegível). */
+pre .hljs-comment, pre .hljs-quote { color: #9fb4cc; font-style: italic; }
+pre .hljs-keyword, pre .hljs-literal, pre .hljs-selector-tag, pre .hljs-built_in { color: #c9a6ff; }
+pre .hljs-string, pre .hljs-regexp, pre .hljs-addition, pre .hljs-attribute, pre .hljs-meta-string { color: #a8e88a; }
+pre .hljs-number, pre .hljs-symbol, pre .hljs-bullet { color: #ffbf73; }
+pre .hljs-title, pre .hljs-title.function_, pre .hljs-section, pre .hljs-name { color: #86b6ff; }
+pre .hljs-type, pre .hljs-class .hljs-title, pre .hljs-params { color: #ffd479; }
+pre .hljs-attr, pre .hljs-variable, pre .hljs-template-variable, pre .hljs-property { color: #8fe0ff; }
+pre .hljs-meta { color: #8fe0ff; }
+/* interpolação de f-string ({...}) e trechos aninhados: texto claro, não escuro */
+pre .hljs-subst, pre .hljs-string .hljs-subst { color: #e6edf6; }
+pre .hljs-emphasis { font-style: italic; }
+pre .hljs-strong { font-weight: 700; }
+
 /* Tabelas */
 table { border-collapse: collapse; font-size: 19px; }
 th, td { border: 1px solid var(--faesa-borda); padding: 6px 12px; }
