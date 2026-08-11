@@ -273,7 +273,7 @@ Operam sobre um **conjunto de valores** e retornam **um único valor**: `SUM, CO
 </div>
 </div>
 
-<div class="aviso">A SQL não tem operador de divisão — expressa-se com <strong>dupla negação</strong> (<code>NOT EXISTS ... NOT EXISTS</code>).</div>
+<div class="aviso">A divisão expressa o <strong>quantificador universal</strong> ("para todos"). A SQL não tem um operador direto para ela — veremos como escrevê-la na <strong>Unidade 5</strong>.</div>
 
 ---
 

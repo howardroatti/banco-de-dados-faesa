@@ -218,7 +218,7 @@ DELETE FROM PROFESSORES P
                     WHERE O.MATRICULA_PROFESSOR = P.MATRICULA_PROFESSOR);
 ```
 
-<div class="dica">💡 Enquanto não houver <code>COMMIT</code>, um <code>ROLLBACK</code> desfaz o que você apagou (Unidade 6 — Transações).</div>
+<div class="dica">💡 Um <code>DELETE</code> só se torna <strong>definitivo</strong> ao confirmar a transação — como desfazer/confirmar é assunto da <strong>Unidade 6</strong>.</div>
 
 ---
 

@@ -76,7 +76,7 @@ Estima-se que **~80%** dos dados do mundo sejam **não estruturados** (texto, e-
 - **Orientação a agregados**: o dado é lido/gravado como uma **unidade** (documento, item) — menos JOINs.
 - **Alta disponibilidade** e tolerância a partições de rede.
 
-<div class="dica">💡 "Agregado" = um conjunto de dados tratado como uma unidade (ex.: um pedido com seus itens em um único documento).</div>
+<div class="dica">💡 "Agregado" = um conjunto de dados tratado como uma unidade — detalhamos no próximo slide.</div>
 
 ---
 

@@ -71,7 +71,7 @@ Uma view é **atualizável** (aceita `INSERT/UPDATE/DELETE`) quando, em geral:
 - Inclui as **chaves primárias** e as colunas **não nulas** obrigatórias;
 - **Não** usa `DISTINCT`, `GROUP BY`, agregações ou remove duplicatas.
 
-<div class="aviso">Views com junção/agregação normalmente são <strong>somente leitura</strong> — para alterar dados, use as tabelas base (ou <code>INSTEAD OF triggers</code>).</div>
+<div class="aviso">Views com junção/agregação normalmente são <strong>somente leitura</strong> — para alterar dados, use as <strong>tabelas base</strong>.</div>
 
 ---
 

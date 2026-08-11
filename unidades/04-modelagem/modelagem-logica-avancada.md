@@ -38,7 +38,7 @@ No MLD usamos a notação de **cardinalidade** nas pontas das ligações:
 | `(0,N)` | zero ou muitos | `──○<` |
 | `(1,N)` | um ou muitos | `──┼<` |
 
-<div class="dica">💡 A "cardinalidade mínima 1" vira <strong>NOT NULL</strong> na FK; a mínima 0 permite <strong>NULL</strong>.</div>
+<div class="dica">💡 A <strong>cardinalidade mínima</strong> vai importar na tradução para tabelas — ver <em>"Regra de nulabilidade da FK"</em>, adiante neste deck.</div>
 
 ---
 
