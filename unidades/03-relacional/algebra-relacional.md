@@ -28,10 +28,10 @@ Prof. M.Sc. Howard Cruz Roatti
 
 ## Dataset de exemplo
 
-<div class="cols">
+<div style="display:grid;grid-template-columns:1fr 1fr 0.82fr;gap:16px;font-size:0.82em;">
 <div>
 
-**NFC** (Nota Fiscal de Compra)
+**NFC** — Nota Fiscal de **Compra**
 | no-nf | nomefor | no-mat | valor |
 |--|--|--|--|
 | 1 | Jose | 1 | 100 |
@@ -44,7 +44,19 @@ Prof. M.Sc. Howard Cruz Roatti
 </div>
 <div>
 
-**M** (Materiais)
+**NFV** — Nota Fiscal de **Venda**
+| no-nf | nomecli | no-mat | valor |
+|--|--|--|--|
+| 1 | Ana | 1 | 150 |
+| 2 | Carlos | 3 | 250 |
+| 3 | Regina | 2 | 350 |
+| 4 | Jose | 1 | 450 |
+| 5 | Beatriz | 3 | 550 |
+
+</div>
+<div>
+
+**M** — Materiais
 | no-mat | nomemat | preço |
 |--|--|--|
 | 1 | Blusa | 2 |
@@ -56,7 +68,7 @@ Prof. M.Sc. Howard Cruz Roatti
 </div>
 </div>
 
-*(NFV = Nota Fiscal de Venda, mesma estrutura de NFC com `nomecli`.)*
+<div class="dica">💡 <strong>NFC</strong> e <strong>NFV</strong> têm a <strong>mesma estrutura</strong> (NFV usa <code>nomecli</code> no lugar de <code>nomefor</code>) — por isso as projeções delas são <strong>união-compatíveis</strong> (∪ ∩ −). <strong>M</strong> conecta pelo <code>no-mat</code>.</div>
 
 ---
 
