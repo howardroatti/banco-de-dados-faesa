@@ -167,6 +167,49 @@ NFC × M  →  6 × 5 = 30 tuplas (muitas sem sentido semântico)
 
 ---
 
+## Produto Cartesiano — exemplo e quando usar
+
+Com relações **pequenas** dá para ver **todas** as combinações. Ex.: variações de um produto (**cor × tamanho**):
+
+<div style="display:grid;grid-template-columns:0.5fr 0.5fr 1fr;gap:16px;font-size:0.9em;align-items:start;">
+<div>
+
+**Cores**
+| cor |
+|--|
+| Azul |
+| Verde |
+
+</div>
+<div>
+
+**Tam.**
+| tam |
+|--|
+| P |
+| M |
+| G |
+
+</div>
+<div>
+
+**Cores × Tam.** → 2 × 3 = **6**
+| cor | tam |
+|--|--|
+| Azul | P |
+| Azul | M |
+| Azul | G |
+| Verde | P |
+| Verde | M |
+| Verde | G |
+
+</div>
+</div>
+
+<div class="dica">💡 <strong>Faz sentido</strong> quando você quer <strong>todas as combinações</strong> (variações cor × tamanho, confrontos times × rodadas) ou como <strong>passo intermediário</strong> de uma junção (× + σ). <strong>Evite</strong> em tabelas grandes sem filtro: 1.000 × 1.000 = <strong>1 milhão</strong> de linhas (a "junção acidental").</div>
+
+---
+
 ## Junção Teta (θ) e Natural
 
 - **Junção θ:** produto cartesiano **+** condição de junção → σ *&lt;condição&gt;* (R × S). Usada quando não há atributo comum.
