@@ -227,25 +227,79 @@ Com relações **pequenas** dá para ver **todas** as combinações. Ex.: varia�
 
 ## Junção Externa — Esquerda / Direita
 
-Preserva tuplas **sem par**, preenchendo o outro lado com **nulos**.
+Preserva tuplas **sem par**, preenchendo o outro lado com **nulos**. Ex.: materiais **comprados** (NFC, `{1,3,4,5}`) × **vendidos** (NFV, `{1,2,3}`):
 
-- **Externa à esquerda (⟕):** todas as tuplas de **R** (à esquerda).
-- **Externa à direita (⟖):** todas as tuplas de **S** (à direita).
+<div class="cols">
+<div>
 
-| no-mat | nomemat | preço | no-nf | valor |
-|--|--|--|--|--|
-| 1 | Blusa | 2 | 1 | 100 |
-| 2 | Carteira | 4 | *(nulo)* | *(nulo)* |
+**Esquerda (⟕):** todas de **Comprados**
+| no-mat | comprador | cliente |
+|--|--|--|
+| 1 | Jose | Ana |
+| 3 | Geny | Carlos |
+| 4 | Regina | *(nulo)* |
+| 5 | Jose | *(nulo)* |
 
-*(Carteira nunca foi comprada → aparece com nulos na externa à direita.)*
+*(4 e 5 foram comprados, mas **nunca vendidos** → nulo.)*
+
+</div>
+<div>
+
+**Direita (⟖):** todas de **Vendidos**
+| no-mat | comprador | cliente |
+|--|--|--|
+| 1 | Jose | Ana |
+| 2 | *(nulo)* | Regina |
+| 3 | Geny | Carlos |
+
+*(2 foi vendido, mas **nunca comprado** → nulo.)*
+
+</div>
+</div>
 
 ---
 
 ## Junção Externa — Completa (⟗)
 
-Une as duas anteriores: preserva as tuplas **sem par dos dois lados**, com nulos onde faltar.
+Une as duas: preserva as tuplas **sem par dos dois lados**, com nulos onde faltar.
 
-<div class="dica">💡 As junções externas são o que o SQL chama de <code>LEFT / RIGHT / FULL OUTER JOIN</code>.</div>
+<div style="display:grid;grid-template-columns:0.42fr 0.42fr 1fr;gap:16px;font-size:0.88em;align-items:start;">
+<div>
+
+**Comprados**
+| no-mat | comprador |
+|--|--|
+| 1 | Jose |
+| 3 | Geny |
+| 4 | Regina |
+| 5 | Jose |
+
+</div>
+<div>
+
+**Vendidos**
+| no-mat | cliente |
+|--|--|
+| 1 | Ana |
+| 2 | Regina |
+| 3 | Carlos |
+
+</div>
+<div>
+
+**Comprados ⟗ Vendidos**
+| no-mat | comprador | cliente |
+|--|--|--|
+| 1 | Jose | Ana |
+| 2 | *(nulo)* | Regina |
+| 3 | Geny | Carlos |
+| 4 | Regina | *(nulo)* |
+| 5 | Jose | *(nulo)* |
+
+</div>
+</div>
+
+<div class="dica">💡 O material <strong>2</strong> (só vendido) e os <strong>4, 5</strong> (só comprados) sobrevivem, com nulos do lado que falta. É o <code>FULL OUTER JOIN</code> — une <code>LEFT</code> + <code>RIGHT</code>.</div>
 
 ---
 
