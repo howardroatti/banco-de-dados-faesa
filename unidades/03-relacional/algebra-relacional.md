@@ -68,7 +68,7 @@ Prof. M.Sc. Howard Cruz Roatti
 </div>
 </div>
 
-<div class="dica">💡 <strong>NFC</strong> e <strong>NFV</strong> têm a <strong>mesma estrutura</strong> (NFV usa <code>nomecli</code> no lugar de <code>nomefor</code>) — por isso as projeções delas são <strong>união-compatíveis</strong> (∪ ∩ −). <strong>M</strong> conecta pelo <code>no-mat</code>.</div>
+<div class="dica">💡 <strong>NFV</strong> tem a <strong>mesma estrutura</strong> de <strong>NFC</strong>, com <code>nomecli</code> no lugar de <code>nomefor</code>.</div>
 
 ---
 
