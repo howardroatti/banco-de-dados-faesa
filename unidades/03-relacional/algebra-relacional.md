@@ -402,5 +402,5 @@ Operam sobre um **conjunto de valores** e retornam **um único valor**: `SUM, CO
 # Dúvidas?
 ### howard.cruz@faesa.br
 
-
+<a class="proximo" href="exercicios-algebra-relacional.html">🎯 Lista de exercícios<small>2 por operação + gabarito</small></a>
 <a class="proximo" href="views-sql-indexacao.html">Próximo →<small>Views, SQL e Indexação</small></a>
