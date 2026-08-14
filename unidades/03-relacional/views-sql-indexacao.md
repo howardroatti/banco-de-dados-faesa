@@ -164,26 +164,26 @@ CREATE INDEX alunos_nome_idx ON alunos(nome);
 
 ---
 
-## Q1 — Modelo Relacional: chaves
+## Q1 — Modelo Relacional: chave primária e estrangeira
 
-A tabela `FUNCIONARIO(cpf, matricula, nome, email, id_departamento)` tem `cpf`, `matricula` e `email` **únicos e não nulos**, e `id_departamento` **referencia** `DEPARTAMENTO`.
+No sistema acadêmico há `TURMA(id_turma, nome)` e `ALUNO(matricula, nome, id_turma)`, em que **cada aluno pertence a uma turma**.
 
-Assinale a alternativa correta sobre as chaves.
+Assinale a alternativa correta sobre as chaves dessas tabelas.
 
-A) `cpf`, `matricula` e `email` são, cada um, uma **chave candidata**; `id_departamento` é **chave estrangeira**.
-B) Apenas `cpf` pode ser chave primária; os demais não são candidatos.
-C) `id_departamento` é uma **chave candidata** de `FUNCIONARIO`.
-D) A tabela pode ter **várias chaves primárias** simultaneamente.
+A) `matricula` é a **chave primária** de `ALUNO` e a identifica unicamente; `id_turma`, em `ALUNO`, é **chave estrangeira** que referencia a PK de `TURMA`.
+B) `id_turma`, em `ALUNO`, é a **chave primária** de `ALUNO`.
+C) A chave primária **pode conter nulos**, desde que a maioria das linhas esteja preenchida.
+D) A chave estrangeira precisa ter o **mesmo nome** da chave primária que referencia.
 
 ---
 
 ## Q1 — Gabarito: **A**
 
-**Por que A:** uma **chave candidata** é um identificador **mínimo, único e não nulo**. `cpf`, `matricula` e `email` cumprem isso — qualquer uma poderia ser a **primária**; as demais viram **alternativas**. `id_departamento` aponta para outra tabela → **estrangeira**.
+**Por que A:** a **chave primária** identifica unicamente cada tupla e **não admite nulos** (`matricula` em `ALUNO`). A **chave estrangeira** guarda valores que **existem como PK** na tabela referenciada (`id_turma` → `TURMA`), garantindo a integridade referencial.
 
-- **B** — errada: qualquer candidata pode ser escolhida como primária, não só o `cpf`.
-- **C** — errada: `id_departamento` **não** é único nesta tabela (é FK, não candidata).
-- **D** — errada: há **uma única** chave primária por tabela.
+- **B** — errada: `id_turma`, em `ALUNO`, **aponta para** `TURMA` (é FK); a PK de `ALUNO` é `matricula`.
+- **C** — errada: PK **nunca** admite nulos (integridade de entidade).
+- **D** — errada: o **nome** não precisa coincidir; o que importa é referenciar a **PK correta**, com valores/domínio compatíveis.
 
 ---
 
