@@ -345,52 +345,53 @@ D) `R` e `S` estejam na **mesma tabela física**.
 
 ---
 
-## Q9 — SQL: `WHERE` × `HAVING`
+## Q9 — SQL: os grupos de comandos
 
-Em `VENDA(id, vendedor, valor)`, o gerente quer os **vendedores cujo total vendido** (∑ `valor`) **passa de R$ 10.000**.
+A SQL organiza seus comandos em **grupos**, conforme a finalidade. Uma equipe precisa: (1) **criar a estrutura** de uma tabela; (2) **inserir e atualizar** registros; (3) **conceder permissões** de acesso.
 
-Qual consulta atende?
+Esses três objetivos pertencem, respectivamente, aos grupos:
 
-A) `SELECT vendedor FROM VENDA WHERE SUM(valor)>10000 GROUP BY vendedor`
-B) `SELECT vendedor FROM VENDA GROUP BY vendedor HAVING SUM(valor)>10000`
-C) `SELECT vendedor FROM VENDA WHERE valor>10000`
-D) `SELECT vendedor FROM VENDA GROUP BY vendedor WHERE SUM(valor)>10000`
-
----
-
-## Q9 — Gabarito: **B**
-
-**Por que B:** filtro sobre um **agregado por grupo** → `GROUP BY` + `HAVING` (que aceita `SUM`, `COUNT`…).
-
-- **A** e **D** — erradas: usam `SUM` no `WHERE`, que **não aceita agregação** e é avaliado **antes** do agrupamento.
-- **C** — errada: filtra **vendas individuais** acima de 10.000, não o **total** de cada vendedor.
+A) DML, DDL, DCL.
+B) DQL, DML, DDL.
+C) DDL, DML, DCL.
+D) DDL, DQL, DCL.
 
 ---
 
-## Q10 — SQL: tipos de `JOIN`
+## Q9 — Gabarito: **C**
 
-Deseja-se listar **todos os clientes**, **inclusive os que nunca fizeram pedido**, mostrando o número de pedidos (0 para quem não tem).
+**Por que C:** **criar estrutura** = **DDL** (`CREATE/ALTER/DROP`); **inserir/atualizar** dados = **DML** (`INSERT/UPDATE/DELETE`); **conceder permissões** = **DCL** (`GRANT/REVOKE`).
 
-Qual junção usar?
-
-A) `INNER JOIN` entre `CLIENTE` e `PEDIDO`.
-B) `LEFT JOIN` de `CLIENTE` com `PEDIDO`.
-C) `CROSS JOIN` (produto cartesiano).
-D) Não é possível em SQL.
+- **A** — errada: inverte DDL e DML — **criar a estrutura não é DML**.
+- **B** — errada: embaralha tudo; **DQL** é apenas consulta (`SELECT`).
+- **D** — errada: **inserir/atualizar dados não é DQL** (consulta).
 
 ---
 
-## Q10 — Gabarito: **B**
+## Q10 — SQL: linguagem declarativa
 
-**Por que B:** o `LEFT JOIN` mantém **todas as linhas da tabela à esquerda** (`CLIENTE`), mesmo sem correspondência em `PEDIDO` (vêm `NULL`/0 do lado direito).
+Ao pedir dados ao banco, o profissional informa **quais** dados quer; o próprio SGBD decide **como** obtê-los (quais índices usar, ordem de acesso etc.).
 
-- **A** — errada: o `INNER JOIN` **descartaria** os clientes sem pedido.
-- **C** — errada: o `CROSS JOIN` combina **todos com todos**, resultado sem sentido aqui.
-- **D** — errada: é um caso clássico e comum em SQL.
+Essa característica classifica a SQL como uma linguagem:
+
+A) **declarativa** — descreve-se o **"o quê"**, não o **"como"**.
+B) procedural — o programador descreve o **passo a passo** do acesso.
+C) de **baixo nível**, dependente do armazenamento físico.
+D) **apenas** de definição de estrutura (DDL).
 
 ---
 
-## Q11 — SQL: Views
+## Q10 — Gabarito: **A**
+
+**Por que A:** em SQL você **declara o que** deseja e o SGBD determina **como** buscar — por isso é **declarativa** e de **alto nível**.
+
+- **B** — errada: seria o oposto — na abordagem **procedural** você especificaria o algoritmo de acesso (o "como").
+- **C** — errada: SQL é de **alto nível** e **independe** do armazenamento físico (independência de dados).
+- **D** — errada: a SQL tem **vários grupos** (DDL, DML, DQL, DCL), não só definição de estrutura.
+
+---
+
+## Q11 — Views
 
 Um DBA cria uma **VIEW** que junta três tabelas e expõe **apenas algumas colunas** para um relatório.
 
@@ -413,26 +414,28 @@ D) Views **sempre** aceitam `INSERT`/`UPDATE` sem restrição.
 
 ---
 
-## Q12 — Indexação: seletividade
+## Q12 — Indexação: hash × ordenado
 
-Numa tabela de **milhões de linhas**, a equipe decide onde criar índices. Em qual coluna o índice **tende a NÃO compensar**?
+Uma tabela terá **muitas buscas por igualdade** (procurar um valor exato) e também **buscas por faixa/ordenação** (períodos, listas ordenadas). A equipe compara índice **hash** e índice **ordenado (B-tree)**.
 
-A) `cpf` (única), usada em `WHERE cpf = ...`
-B) `id_cliente` (FK) usada em `JOIN`.
-C) coluna **booleana** `ativo` (S/N) cujo filtro retorna **~metade** das linhas.
-D) `data` usada em faixas (`BETWEEN`).
+Assinale a alternativa **correta**.
+
+A) O índice hash é o melhor para buscas por faixa.
+B) Criar índice em todas as colunas é sempre vantajoso.
+C) Índices aceleram a escrita (`INSERT/UPDATE`), então devem cobrir tudo.
+D) O índice hash é ótimo para igualdade, mas ruim para faixa/ordenação; o B-tree atende bem os dois casos.
 
 ---
 
-## Q12 — Gabarito: **C**
+## Q12 — Gabarito: **D**
 
-**Por que C:** o índice compensa quando a busca é **seletiva** (retorna **poucas** linhas). Uma coluna de **baixa seletividade** (booleana → ~50% das linhas) leva o otimizador a preferir a **varredura completa**; o índice só **onera escrita e espaço**.
+**Por que D:** o **hash** localiza por **igualdade** em tempo quase constante, mas **não serve** para faixa/ordenação; o **B-tree** (ordenado/multinível) atende **igualdade e faixa**.
 
-- **A** — errada: `cpf` é **altamente seletivo** (uma linha) → índice excelente.
-- **B** — errada: FK em `JOIN` é um dos **melhores** casos para indexar.
-- **D** — errada: faixas de `data` se beneficiam de índices ordenados (B-tree).
+- **A** — errada: para **faixa**, o hash é justamente o **pior** caso.
+- **B** — errada: **não se indexa tudo** — cada índice ocupa espaço e pesa na escrita.
+- **C** — errada: índices **tornam a escrita mais lenta** (o índice também precisa ser mantido), não a aceleram.
 
-<div class="dica">💡 <strong>Gabarito geral:</strong> 1A · 2B · 3B · 4B · 5A · 6C · 7B · 8B · 9B · 10B · 11B · 12C</div>
+<div class="dica">💡 <strong>Gabarito geral:</strong> 1A · 2B · 3B · 4B · 5A · 6C · 7B · 8B · 9C · 10A · 11B · 12D</div>
 
 ---
 
