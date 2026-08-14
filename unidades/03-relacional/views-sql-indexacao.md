@@ -212,22 +212,24 @@ D) Nenhuma; o SGBD sempre permite excluir.
 
 ## Q3 — Modelo Relacional: propriedades da relação
 
-Um aluno afirma: *"em uma relação, a **ordem das linhas importa** e **pode haver linhas totalmente repetidas**".*
+No modelo relacional de **Codd**, uma relação é definida a partir da **teoria dos conjuntos**.
 
-Segundo o modelo relacional de **Codd**, a afirmação está:
+Sobre as propriedades de uma **relação (tabela)**, assinale a alternativa **correta**.
 
-A) Correta nas duas partes.
-B) **Incorreta**: a ordem das tuplas **não** importa e **não** há tuplas totalmente duplicadas.
-C) Correta quanto à ordem; incorreta quanto às duplicatas.
-D) Incorreta quanto à ordem; correta quanto às duplicatas.
+A) A **ordem das linhas** é significativa e deve ser preservada.
+B) Podem existir **duas tuplas idênticas** na mesma relação.
+C) Uma relação é um **conjunto**: a ordem das linhas não importa e não há tuplas duplicadas.
+D) Cada célula pode conter **vários valores** (atributo multivalorado) sem restrição.
 
 ---
 
-## Q3 — Gabarito: **B**
+## Q3 — Gabarito: **C**
 
-**Por que B:** uma relação é um **conjunto** de tuplas. Logo, **não há ordem** intrínseca entre as linhas e **não existem tuplas totalmente duplicadas** (a chave primária garante unicidade). Os atributos também são **atômicos** (1FN).
+**Por que C:** como a relação é um **conjunto** de tuplas, **não há ordem** entre as linhas e **não existem tuplas duplicadas** (a chave primária garante a **unicidade**).
 
-- **A, C, D** — erradas: todas aceitam pelo menos uma das duas ideias falsas (ordem relevante ou duplicatas), que contrariam a definição de relação como conjunto.
+- **A** — errada: a **ordem das linhas é irrelevante** no modelo relacional.
+- **B** — errada: **não** pode haver duas tuplas totalmente iguais (princípio da unicidade).
+- **D** — errada: os valores devem ser **atômicos** (1FN) — atributo multivalorado não é permitido.
 
 ---
 
@@ -435,7 +437,7 @@ D) O índice hash é ótimo para igualdade, mas ruim para faixa/ordenação; o B
 - **B** — errada: **não se indexa tudo** — cada índice ocupa espaço e pesa na escrita.
 - **C** — errada: índices **tornam a escrita mais lenta** (o índice também precisa ser mantido), não a aceleram.
 
-<div class="dica">💡 <strong>Gabarito geral:</strong> 1A · 2B · 3B · 4B · 5A · 6C · 7B · 8B · 9C · 10A · 11B · 12D</div>
+<div class="dica">💡 <strong>Gabarito geral:</strong> 1A · 2B · 3C · 4B · 5A · 6C · 7B · 8B · 9C · 10A · 11B · 12D</div>
 
 ---
 
