@@ -22,7 +22,7 @@ Prof. M.Sc. Howard Cruz Roatti
 - **Regras de tradução**: entidades, atributos, relacionamentos
 - **Atributos multivalorados/compostos** e **entidades fracas**
 - Relacionamentos **1:1, 1:N, M:N**
-- **Mermaid** (diagrama como código) × **SQL Power Architect**
+- **Ferramentas**: **Mermaid** (padrão, diagrama como código), também draw.io e brModelo — e SQL Power Architect na VM
 
 ---
 

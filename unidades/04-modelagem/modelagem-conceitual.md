@@ -23,6 +23,7 @@ Prof. M.Sc. Howard Cruz Roatti
 - **Entidades, Atributos e Relacionamentos**
 - **Cardinalidade** e **participação**
 - Casos: 1:N, N:N, **generalização** e **auto-relacionamento**
+- **Ferramentas de modelagem**: **Mermaid** (padrão), também draw.io e brModelo
 - **Exercícios** de modelagem
 
 <div class="dica">🎯 Objetivo: compreender os conceitos, ler e criar diagramas ER, e praticar com exemplos reais.</div>
