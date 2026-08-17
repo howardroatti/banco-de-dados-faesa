@@ -86,13 +86,13 @@ Prof. M.Sc. Howard Cruz Roatti
 erDiagram
     FORNECEDOR  ||--o{ NOTA_FISCAL : emite
     NOTA_FISCAL ||--|{ ITEM        : contem
-    FORNECEDOR  { int id PK
-                  string nome }
 ```
 
 - Cardinalidade em **pé de galinha**: `||` um · `o{` zero ou muitos · `|{` um ou muitos.
 
-<div class="dica">💡 <strong>Também aceitos</strong> (mesma notação crow's foot): <strong>draw.io</strong> e <strong>brModelo</strong>. Entregue a <strong>imagem/PDF</strong> do diagrama e, se usar Mermaid, também o <strong>código</strong>.</div>
+<div class="aviso">📌 No <strong>ER (conceitual)</strong> o Mermaid fica <strong>sem os campos</strong> — foco em <strong>entidades, relacionamentos e cardinalidade</strong>. Os <strong>atributos com tipos, PK, FK e nulls</strong> aparecem no <strong>modelo lógico</strong> (Parte 2).</div>
+
+<div class="dica">💡 Também aceitos (mesma notação): <strong>draw.io</strong> e <strong>brModelo</strong>. Entregue a imagem/PDF e, no Mermaid, também o código.</div>
 
 ---
 
@@ -142,6 +142,33 @@ Quantas ocorrências de uma entidade se associam a outra:
 ![h:400 center](assets/auto-rel.svg)
 
 - Uma entidade se relaciona **consigo mesma**: um funcionário **gerencia** outros funcionários (o gestor também é funcionário).
+
+---
+
+## Exemplo de uso — do enunciado ao ER
+
+**Cenário:** uma **biblioteca** registra **empréstimos** — cada **leitor** pega vários **livros** ao longo do tempo.
+
+1. **Entidades** (substantivos): `LEITOR`, `LIVRO`, `EMPRESTIMO`.
+2. **Atributos** (só identifique): leitor (matrícula, nome), livro (ISBN, título)… — **sem tipos** ainda.
+3. **Relacionamentos** (verbos): leitor **faz** empréstimo · livro **consta** no empréstimo.
+4. **Cardinalidade**: 1 leitor → N empréstimos · 1 livro → N empréstimos (o `EMPRESTIMO` resolve o **N:N**).
+
+```text
+erDiagram
+    LEITOR ||--o{ EMPRESTIMO : faz
+    LIVRO  ||--o{ EMPRESTIMO : consta
+```
+
+<div class="aviso">📌 No ER, o Mermaid vai <strong>sem os campos</strong> — tipos, PK, FK e nulls ficam para o <strong>modelo lógico</strong> (Parte 2).</div>
+
+---
+
+## Exemplo de uso — o diagrama gerado
+
+![h:300 center](assets/exemplo-biblioteca.svg)
+
+<div class="dica">💡 <strong>Sua vez:</strong> aplique os <strong>mesmos 4 passos</strong> aos casos abaixo (Pedidos e RPG).</div>
 
 ---
 
