@@ -77,6 +77,24 @@ Prof. M.Sc. Howard Cruz Roatti
 
 ---
 
+## Ferramentas de modelagem
+
+**Padrão da disciplina: Mermaid `erDiagram`** — o diagrama vira **texto** (fácil de versionar, colar no material e revisar):
+
+```text
+erDiagram
+    FORNECEDOR  ||--o{ NOTA_FISCAL : emite
+    NOTA_FISCAL ||--|{ ITEM        : contem
+    FORNECEDOR  { int id PK
+                  string nome }
+```
+
+- Cardinalidade em **pé de galinha**: `||` um · `o{` zero ou muitos · `|{` um ou muitos.
+
+<div class="dica">💡 <strong>Também aceitos</strong> (mesma notação crow's foot): <strong>draw.io</strong> e <strong>brModelo</strong>. Entregue a <strong>imagem/PDF</strong> do diagrama e, se usar Mermaid, também o <strong>código</strong>.</div>
+
+---
+
 ## Cardinalidade
 
 Quantas ocorrências de uma entidade se associam a outra:

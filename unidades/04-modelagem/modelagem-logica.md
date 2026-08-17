@@ -146,6 +146,8 @@ erDiagram
 
 <div class="vm">🖥️ Ambas as ferramentas estão na VM; use a que melhor se encaixa ao tamanho do projeto.</div>
 
+<div class="dica">💡 <strong>Padrão da disciplina: Mermaid.</strong> Também aceitos: <strong>draw.io</strong> e <strong>brModelo</strong> (mesma notação crow's foot) — entregue a imagem/PDF e, no Mermaid, também o código.</div>
+
 ---
 
 ## Exercício
