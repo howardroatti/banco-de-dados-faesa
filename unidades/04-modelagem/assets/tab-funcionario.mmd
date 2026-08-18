@@ -1,0 +1,6 @@
+erDiagram
+    FUNCIONARIOS ||--o{ FUNCIONARIOS : gerencia
+    FUNCIONARIOS {
+        int codigo_funcionario PK
+        int codigo_gestor FK
+    }

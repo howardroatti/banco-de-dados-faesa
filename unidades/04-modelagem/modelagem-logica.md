@@ -45,6 +45,111 @@ Prof. M.Sc. Howard Cruz Roatti
 
 ---
 
+## Tradução E-R → Tabelas — Entidade e multivalorado
+
+<div class="cols">
+<div>
+
+**Diagrama E-R**
+![w:300](assets/er-fornecedor.svg)
+
+</div>
+<div>
+
+**Tabelas (lógico)**
+![h:360](assets/tab-fornecedor.svg)
+
+</div>
+</div>
+
+<div class="dica">A entidade vira <strong>tabela</strong>; o <strong>composto</strong> ENDERECO é decomposto em colunas; o <strong>multivalorado</strong> {telefones} vira a tabela <code>TELEFONES</code> (com FK).</div>
+
+---
+
+## Tradução E-R → Tabelas — Relacionamento 1:N
+
+<div class="cols">
+<div>
+
+**Diagrama E-R**
+![w:420](assets/er-notas.svg)
+
+</div>
+<div>
+
+**Tabelas (lógico)**
+![h:380](assets/tab-notas.svg)
+
+</div>
+</div>
+
+<div class="dica">A PK do lado "1" (<code>numero</code>) vira <strong>FK</strong> em <code>ITENS_NF</code>; a PK de ITENS é <strong>composta</strong> (numero + item).</div>
+
+---
+
+## Tradução E-R → Tabelas — Relacionamento N:M
+
+<div class="cols">
+<div>
+
+**Diagrama E-R**
+![w:420](assets/er-fornecimento.svg)
+
+</div>
+<div>
+
+**Tabelas (lógico)**
+![h:360](assets/tab-fornecimento.svg)
+
+</div>
+</div>
+
+<div class="dica">O M:N vira a <strong>tabela associativa</strong> <code>FORNECIMENTOS</code>: as duas FKs formam a <strong>PK composta</strong>, mais o atributo <code>preco</code>.</div>
+
+---
+
+## Tradução E-R → Tabelas — Generalização
+
+<div class="cols">
+<div>
+
+**Diagrama E-R**
+![w:340](assets/er-pessoa.svg)
+
+</div>
+<div>
+
+**Tabelas (lógico)**
+![h:360](assets/tab-pessoa.svg)
+
+</div>
+</div>
+
+<div class="dica">Uma <strong>tabela por tipo</strong>: <code>FISICAS</code> e <code>JURIDICAS</code> usam a mesma PK de <code>PESSOAS</code> (que também é <strong>FK</strong>) — herdam a identidade.</div>
+
+---
+
+## Tradução E-R → Tabelas — Auto-relacionamento
+
+<div class="cols">
+<div>
+
+**Diagrama E-R**
+![w:400](assets/er-funcionario.svg)
+
+</div>
+<div>
+
+**Tabelas (lógico)**
+![w:360](assets/tab-funcionario.svg)
+
+</div>
+</div>
+
+<div class="dica"><code>codigo_gestor</code> é uma <strong>FK</strong> que aponta para a própria tabela <code>FUNCIONARIOS</code> (o gestor também é funcionário).</div>
+
+---
+
 ## Entidades regulares
 
 - Cada entidade vira uma **tabela**.

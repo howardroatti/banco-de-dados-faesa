@@ -1,0 +1,16 @@
+erDiagram
+    FORNECEDORES ||--o{ FORNECIMENTOS : tem
+    PRODUTOS ||--o{ FORNECIMENTOS : em
+    FORNECEDORES {
+        int codigo PK
+        varchar nome
+    }
+    PRODUTOS {
+        int codigo PK
+        varchar nome
+    }
+    FORNECIMENTOS {
+        int cod_fornecedor PK "FK"
+        int cod_produto PK "FK"
+        numeric preco
+    }

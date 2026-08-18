@@ -1,0 +1,12 @@
+erDiagram
+    FORNECEDORES ||--o{ TELEFONES : possui
+    FORNECEDORES {
+        int codigo PK
+        varchar nome
+        varchar logradouro
+        varchar cidade
+    }
+    TELEFONES {
+        int codigo PK "FK"
+        varchar telefone PK
+    }

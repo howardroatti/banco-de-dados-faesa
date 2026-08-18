@@ -1,0 +1,17 @@
+erDiagram
+    PESSOAS ||--o| FISICAS : e
+    PESSOAS ||--o| JURIDICAS : e
+    PESSOAS {
+        int codigo PK
+        varchar logradouro
+    }
+    FISICAS {
+        int codigo PK "FK"
+        varchar cpf
+        varchar nome
+    }
+    JURIDICAS {
+        int codigo PK "FK"
+        varchar cnpj
+        varchar razao_social
+    }
