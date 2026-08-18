@@ -133,7 +133,7 @@ Cada **diagrama de classes** (UML) vira um **diagrama E-R (Chen)** + um **Dicion
 <div>
 
 **Diagrama E-R**
-![w:280](assets/er-fornecedor.svg)
+![w:360](assets/er-fornecedor.svg)
 
 </div>
 </div>
@@ -154,7 +154,7 @@ Cada **diagrama de classes** (UML) vira um **diagrama E-R (Chen)** + um **Dicion
 <div>
 
 **Diagrama E-R**
-![w:330](assets/er-notas.svg)
+![w:440](assets/er-notas.svg)
 
 </div>
 </div>
@@ -175,7 +175,7 @@ Cada **diagrama de classes** (UML) vira um **diagrama E-R (Chen)** + um **Dicion
 <div>
 
 **Diagrama E-R**
-![w:330](assets/er-fornecimento.svg)
+![w:440](assets/er-fornecimento.svg)
 
 </div>
 </div>
@@ -196,7 +196,7 @@ Cada **diagrama de classes** (UML) vira um **diagrama E-R (Chen)** + um **Dicion
 <div>
 
 **Diagrama E-R**
-![w:300](assets/er-pessoa.svg)
+![w:380](assets/er-pessoa.svg)
 
 </div>
 </div>
@@ -217,7 +217,7 @@ Cada **diagrama de classes** (UML) vira um **diagrama E-R (Chen)** + um **Dicion
 <div>
 
 **Diagrama E-R**
-![w:320](assets/er-funcionario.svg)
+![w:430](assets/er-funcionario.svg)
 
 </div>
 </div>
