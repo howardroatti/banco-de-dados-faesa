@@ -172,30 +172,61 @@ erDiagram
 
 ---
 
-## Exercícios
+## Exercício 1 — Controle de Pedidos
 
 <div class="cols">
 <div>
 
-**Controle de Pedidos**
-- **Cliente**: nome, endereço, telefone, e-mail
-- **Produto**: nome, descrição, preço
-- **Pedido**: data, hora, cliente, produto, quantidade
-- **Pagamento**: data, valor, cliente, cartão
+**Entidades (atributos)**
+- **Cliente** — nome, endereço, telefone, e-mail
+- **Produto** — nome, descrição, preço, imagem
+- **Pedido** — data, hora, quantidade
+- **Pagamento** — data, hora, valor, cartão
+- **Fornecedor** — nome, endereço, telefone, e-mail
 
 </div>
 <div>
 
-**Jogos Digitais (RPG)**
-- **Jogador**: ID, nome, nível
-- **Personagem**: ID, nome, tipo
-- **Arma**: ID, nome, tipo, dano
-- **Missão**: ID, nome, dificuldade
+**Relacionamentos e cardinalidade**
+- **Cliente 1:N Pedido** — um cliente faz vários pedidos
+- **Pedido 1:N Produto** — um pedido tem vários itens
+- **Pedido 1:1 Pagamento** — cada pedido, um pagamento
+- **Fornecedor 1:N Pedido** — um fornecedor atende vários pedidos
 
 </div>
 </div>
 
-<div class="dica">Modele o **ER** de cada caso: identifique entidades, atributos, relacionamentos e cardinalidades.</div>
+<div class="dica">Modele o <strong>ER</strong> (entidades, relacionamentos e cardinalidades). No ER, <strong>sem os campos tipados</strong> — PK/FK/tipos ficam no modelo lógico.</div>
+
+---
+
+## Exercício 2 — Jogos Digitais (RPG)
+
+<div class="cols">
+<div>
+
+**Entidades (atributos)**
+- **Jogador** — nome, data de nascimento, nível
+- **Personagem** — nome, tipo
+- **Arma** — nome, tipo, dano
+- **Missão** — nome, dificuldade, recompensa
+- **Inventário** — itens do jogador (liga Jogador e Arma)
+- **Conquista** — nome, descrição
+
+</div>
+<div>
+
+**Relacionamentos e cardinalidade**
+- **Jogador 1:N Personagem**
+- **Personagem N:M Arma**
+- **Jogador N:M Missão**
+- **Jogador 1:N Inventário**
+- **Jogador N:M Conquista**
+
+</div>
+</div>
+
+<div class="dica">Modele o <strong>ER</strong> (entidades, relacionamentos e cardinalidades). Nos <strong>N:M</strong>, lembre da <strong>entidade associativa</strong> ao passar para o lógico.</div>
 
 ---
 
