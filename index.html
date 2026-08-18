@@ -22,6 +22,13 @@
   .ead{background:#fff3cd;color:#8a6d00} .inicio{background:#0d2b57;color:#fff}
   footer{color:var(--muted);font-size:13px;border-top:1px solid var(--suave);margin-top:32px;padding-top:14px}
   .links a{margin-right:16px}
+  td.topico b{display:block;color:var(--azul);font-weight:700;font-size:15px;margin-bottom:6px}
+  ul.aulas{list-style:none;margin:0;padding-left:22px}
+  ul.aulas li{margin:5px 0}
+  ul.aulas a{text-transform:uppercase;letter-spacing:.4px;font-weight:600;font-size:13.5px;color:var(--azul2)}
+  ul.aulas a::before{content:"\203a\00a0\00a0";color:var(--muted);font-weight:700}
+  ul.aulas a.pdf{text-transform:none;letter-spacing:0;font-weight:400;font-size:12px;color:var(--muted)}
+  ul.aulas a.pdf::before{content:none}
 </style>
 </head>
 <body>
@@ -40,32 +47,42 @@
     <tbody>
       <tr><td>1</td><td><a href="unidades/01-conceitos/conceitos-bd.html">Conceitos de Banco de Dados</a> <a href="unidades/01-conceitos/conceitos-bd.pdf">(PDF)</a></td><td><span class="badge ead">📚 EAD (autoestudo)</span></td></tr>
       <tr><td>2</td><td><a href="unidades/02-arquitetura/arquitetura-bd.html">Arquitetura para Banco de Dados</a> <a href="unidades/02-arquitetura/arquitetura-bd.pdf">(PDF)</a></td><td><span class="badge ead">📚 EAD (autoestudo)</span></td></tr>
-      <tr><td>3</td><td>Modelo Relacional —
-        <a href="unidades/03-relacional/introducao-relacional.html">Introdução (Codd)</a> ·
-        <a href="unidades/03-relacional/algebra-relacional.html">Álgebra Relacional</a> ·
-        <a href="unidades/03-relacional/views-sql-indexacao.html">Views, SQL e Indexação</a></td>
+      <tr><td>3</td><td class="topico"><b>Modelo Relacional</b>
+        <ul class="aulas">
+          <li><a href="unidades/03-relacional/introducao-relacional.html">Introdução (Codd)</a></li>
+          <li><a href="unidades/03-relacional/algebra-relacional.html">Álgebra Relacional</a></li>
+          <li><a href="unidades/03-relacional/views-sql-indexacao.html">Views, SQL e Indexação</a></li>
+        </ul></td>
         <td><span class="badge inicio">🎓 início da disciplina</span></td></tr>
-      <tr><td>4</td><td>Modelagem Relacional de Dados —
-        <a href="unidades/04-modelagem/modelagem-conceitual.html">Conceitual (ER)</a> ·
-        <a href="unidades/04-modelagem/modelagem-conceitual-avancada.html">Conceitual (aprofundando)</a> ·
-        <a href="unidades/04-modelagem/modelagem-logica.html">Lógica (→ tabelas)</a> ·
-        <a href="unidades/04-modelagem/modelagem-logica-avancada.html">Lógica (aprofundando)</a> ·
-        <a href="unidades/04-modelagem/normalizacao.html">Normalização</a></td>
+      <tr><td>4</td><td class="topico"><b>Modelagem Relacional de Dados</b>
+        <ul class="aulas">
+          <li><a href="unidades/04-modelagem/modelagem-conceitual.html">Conceitual (ER)</a></li>
+          <li><a href="unidades/04-modelagem/modelagem-conceitual-avancada.html">Conceitual (aprofundando)</a></li>
+          <li><a href="unidades/04-modelagem/modelagem-logica.html">Lógica (→ tabelas)</a></li>
+          <li><a href="unidades/04-modelagem/modelagem-logica-avancada.html">Lógica (aprofundando)</a></li>
+          <li><a href="unidades/04-modelagem/normalizacao.html">Normalização</a></li>
+        </ul></td>
         <td><span class="badge">✅ novo</span></td></tr>
-      <tr><td>5</td><td>Linguagem SQL —
-        <a href="unidades/05-sql/linguagem-sql.html">DDL/DML/DQL</a> <a href="unidades/05-sql/linguagem-sql.pdf">(PDF)</a> ·
-        <a href="unidades/05-sql/procedimentos-armazenados.html">Procedimentos Armazenados</a> <a href="unidades/05-sql/procedimentos-armazenados.pdf">(PDF)</a> ·
-        <a href="unidades/05-sql/pratica-sql-enade.html">Prática ENADE</a> <a href="unidades/05-sql/pratica-sql-enade.pdf">(PDF)</a></td>
+      <tr><td>5</td><td class="topico"><b>Linguagem SQL</b>
+        <ul class="aulas">
+          <li><a href="unidades/05-sql/linguagem-sql.html">DDL/DML/DQL</a> <a class="pdf" href="unidades/05-sql/linguagem-sql.pdf">(PDF)</a></li>
+          <li><a href="unidades/05-sql/procedimentos-armazenados.html">Procedimentos Armazenados</a> <a class="pdf" href="unidades/05-sql/procedimentos-armazenados.pdf">(PDF)</a></li>
+          <li><a href="unidades/05-sql/pratica-sql-enade.html">Prática ENADE</a> <a class="pdf" href="unidades/05-sql/pratica-sql-enade.pdf">(PDF)</a></li>
+        </ul></td>
         <td><span class="badge">✅ novo</span></td></tr>
-      <tr><td>6</td><td>Processamento de Transações —
-        <a href="unidades/06-transacoes/transacoes.html">Transações e ACID</a> <a href="unidades/06-transacoes/transacoes.pdf">(PDF)</a> ·
-        <a href="unidades/06-transacoes/concorrencia-recuperacao.html">Concorrência e Recuperação</a> <a href="unidades/06-transacoes/concorrencia-recuperacao.pdf">(PDF)</a></td>
+      <tr><td>6</td><td class="topico"><b>Processamento de Transações</b>
+        <ul class="aulas">
+          <li><a href="unidades/06-transacoes/transacoes.html">Transações e ACID</a> <a class="pdf" href="unidades/06-transacoes/transacoes.pdf">(PDF)</a></li>
+          <li><a href="unidades/06-transacoes/concorrencia-recuperacao.html">Concorrência e Recuperação</a> <a class="pdf" href="unidades/06-transacoes/concorrencia-recuperacao.pdf">(PDF)</a></li>
+        </ul></td>
         <td><span class="badge">✅ novo</span></td></tr>
-      <tr><td>7</td><td>Bancos de Dados NoSQL —
-        <a href="unidades/07-nosql/nosql-conceitos.html">Conceitos</a> ·
-        <a href="unidades/07-nosql/mongodb-na-vm.html">MongoDB na VM</a> ·
-        <a href="unidades/07-nosql/de-sql-para-mongodb.html">De SQL para MongoDB</a> ·
-        <a href="unidades/07-nosql/pratica-mongodb.html">Prática Pokémon</a> <a href="unidades/07-nosql/pratica-mongodb.pdf">(PDF)</a></td>
+      <tr><td>7</td><td class="topico"><b>Bancos de Dados NoSQL</b>
+        <ul class="aulas">
+          <li><a href="unidades/07-nosql/nosql-conceitos.html">Conceitos</a></li>
+          <li><a href="unidades/07-nosql/mongodb-na-vm.html">MongoDB na VM</a></li>
+          <li><a href="unidades/07-nosql/de-sql-para-mongodb.html">De SQL para MongoDB</a></li>
+          <li><a href="unidades/07-nosql/pratica-mongodb.html">Prática Pokémon</a> <a class="pdf" href="unidades/07-nosql/pratica-mongodb.pdf">(PDF)</a></li>
+        </ul></td>
         <td><span class="badge">✅ novo</span></td></tr>
     </tbody>
   </table>
