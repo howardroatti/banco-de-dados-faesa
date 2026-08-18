@@ -227,6 +227,113 @@ título = [ Sr. | Sra. | Dr. | Prof. ]
 
 ---
 
+<!-- _class: secao -->
+
+# Exercícios
+### Aplicando a modelagem conceitual avançada
+
+---
+
+## Exercício 1 — Reconhecendo entidades (5 grupos)
+
+**Cenário.** Uma **clínica veterinária** atende animais. Cada **tutor** leva seus **animais** a **consultas**; em cada consulta, um **veterinário** examina o animal e registra o **diagnóstico** (um texto), podendo prescrever **medicamentos**. A clínica quer ainda gerar um **relatório mensal** de atendimentos e exibir na tela a **idade** do animal (calculada da data de nascimento).
+
+**Faça:**
+1. Liste os **substantivos** e classifique-os nos **5 grupos** (tangíveis · papéis · eventos · interações · especificações).
+2. **Descarte** os que não viram entidade (justifique com uma das 4 regras).
+3. Escolha **2 entidades** e classifique **1 atributo** de cada como **descritivo / nominativo / referencial**.
+
+---
+
+## Exercício 1 — Resolução sugerida
+
+<div class="cols">
+<div>
+
+**Entidades por grupo**
+- **Tangíveis:** `ANIMAIS`, `MEDICAMENTOS`
+- **Papéis:** `TUTORES`, `VETERINÁRIOS`
+- **Eventos:** `CONSULTAS`
+- **Interações:** a própria consulta liga tutor–animal–veterinário
+
+</div>
+<div>
+
+**Descartados**
+- **diagnóstico** → é **atributo** de CONSULTA (regra 4)
+- **relatório mensal** → futura aplicação/relatório (regra 3)
+- **idade** → atributo **derivado** / tela (regra 3)
+
+</div>
+</div>
+
+**Atributos (ex.):** `ANIMAL.nome` = **descritivo** · `ANIMAL.microchip` = **nominativo** (chave) · `CONSULTA.crmv_vet` = **referencial** (FK).
+
+---
+
+## Exercício 2 — Cardinalidade e restrições
+
+Para cada situação, indique **(a)** a cardinalidade `(mín,máx)` de cada lado e **(b)** o tipo de restrição, quando houver (**independente · contingente · mutuamente exclusivo**):
+
+1. Todo **empregado** deve estar lotado em **um** departamento; um departamento tem **vários** empregados (e pode começar sem nenhum).
+2. Uma **grávida** realiza **parto normal** *ou* **cesárea** — nunca os dois.
+3. Uma pessoa só pode ser **fiadora** de um contrato se **também** for **cliente** do banco.
+
+---
+
+## Exercício 2 — Resolução
+
+1. **EMPREGADO–DEPARTAMENTO:** empregado `(1,1)` — participação **total** (obrigatória); departamento `(0,N)` — **parcial**.
+2. **Mutuamente exclusivo** — uma barra `|` cortando as duas linhas (parto normal × cesárea).
+3. **Contingente** — o relacionamento *ser fiadora* **depende** do relacionamento *ser cliente* (`‖` duas barras).
+
+<div class="dica">💡 Mínima <strong>1</strong> = total (bolinha cheia ●) · mínima <strong>0</strong> = parcial.</div>
+
+---
+
+## Exercício 3 — Agregação e Generalização
+
+1. **Quando** um relacionamento com um agregado deve ser **agregação** e não um **relacionamento ternário**? (cite a regra da cardinalidade mínima.)
+2. `ITENS PEDIDO` (agregado de `PEDIDOS × MATERIAIS`) precisa se relacionar com `ORDENS DE COMPRA`. Por que **agregação** e não um ternário `PEDIDOS × MATERIAIS × ORDENS`?
+3. Classifique as generalizações: `PESSOA → FÍSICA / JURÍDICA`; e `FUNCIONÁRIO → MOTORISTA / MECÂNICO`, sabendo que um funcionário **pode acumular** as duas funções.
+
+---
+
+## Exercício 3 — Resolução
+
+1. É **agregação** quando a **cardinalidade mínima** da entidade externa com o agregado é **0** (participação parcial) e os relacionamentos ocorrem em **momentos distintos**; se fosse obrigatória e simultânea, seria um **ternário**.
+2. Porque `ORDENS DE COMPRA` se relaciona com o **par já formado** `(pedido, material)` = o item do pedido, em **outro momento** — não com os três ao mesmo tempo. A linha da externa **não ultrapassa** o retângulo do agregado.
+3. `PESSOA → FÍSICA/JURÍDICA`: **disjunta** (ninguém é PF e PJ) e **total** (toda pessoa é uma das duas). `FUNCIONÁRIO → MOTORISTA/MECÂNICO`: **não-disjunta / inclusiva** (papéis — pode acumular) e, em geral, **parcial** (pode não ser nenhuma das duas).
+
+---
+
+## Exercício 4 — Dicionário de dados
+
+**(a) Interprete** as especificações:
+
+```text
+PEDIDO = numero + data + nome-cliente + endereço + 1{item}20
+título = [ Sr. | Sra. | Dr. ]
+```
+
+**(b) Escreva** o dicionário de `CLIENTE`: tem **código** (chave), **nome**, **endereço** (logradouro + número + cidade), **e-mail opcional** e **de 1 a 3 telefones**.
+
+---
+
+## Exercício 4 — Resolução
+
+**(a)** Um `PEDIDO` é composto por número, data, nome do cliente, endereço e de **1 a 20** `item` (iteração); `título` é **uma escolha** entre Sr., Sra. **ou** Dr.
+
+**(b)**
+```text
+CLIENTE  = @codigo + nome + ENDEREÇO + (e-mail) + 1{telefone}3
+ENDEREÇO = logradouro + numero + cidade
+```
+
+<div class="dica">💡 <code>@</code> marca a chave · <code>( )</code> opcional · <code>1{ }3</code> de 1 a 3 ocorrências · <code>[ | ]</code> escolha.</div>
+
+---
+
 ## Bibliografia
 
 - COUGO, P. **Modelagem Conceitual e Projeto de Bancos de Dados.** Rio de Janeiro: Campus, 1997.
