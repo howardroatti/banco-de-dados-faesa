@@ -110,56 +110,119 @@ Quantas ocorrências de uma entidade se associam a outra:
 
 ---
 
-## Exemplo 1:N — Notas Fiscais e Itens
-
-![h:430 center](assets/er-notas.svg)
-
-- Uma nota fiscal **discrimina** vários itens; cada item pertence a **uma** nota.
-
----
-
-## Exemplo N:N — Fornecimento
-
-![h:340 center](assets/er-fornecimento.svg)
-
-- Relacionamento **muitos-para-muitos** entre `FORNECEDORES` e `PRODUTOS` (o "fornecem" carrega dados próprios, ex.: preço).
-
----
-
-## Generalização / Especialização
-
-![h:430 center](assets/generalizacao.svg)
-
-- `PESSOAS` (geral) especializa-se em `FÍSICAS` e `JURÍDICAS`, que **herdam** os atributos comuns e acrescentam os próprios.
-
----
-
-## Auto-relacionamento
-
-![h:400 center](assets/auto-rel.svg)
-
-- Uma entidade se relaciona **consigo mesma**: um funcionário **gerencia** outros funcionários (o gestor também é funcionário).
-
----
-
 ## Do diagrama de classes ao ER
 
-Partindo de um **diagrama de classes** (UML), traduzimos para o **ER (Chen)**:
+Cada **diagrama de classes** (UML) vira um **diagrama E-R (Chen)** + um **Dicionário de Dados**:
 
-![h:210 center](assets/biblioteca-classes.svg)
+- **Classe → entidade** (retângulo) · **associação → relacionamento** (losango) · **multiplicidade → cardinalidade** `(mín,máx)`.
+- **Herança → generalização/especialização** · **classe de associação → relacionamento com atributos**.
 
-- **Classes → entidades** · **associações → relacionamentos (losango)** · **multiplicidades → cardinalidade** (`1`, `N`).
-- No ER, **sem os campos** — tipos, PK e FK ficam para o **modelo lógico** (Parte 2).
+<div class="dica"><strong>Dicionário de Dados</strong> — <u>chave</u> sublinhada · <strong>ATRIBUTO COMPOSTO</strong> em maiúsculas · <code>{ }</code> multivalorado.</div>
 
 ---
 
-## O ER em notação de Chen
+## Tradução Classe → E-R — Entidade simples
 
-![h:230 center](assets/exemplo-biblioteca.svg)
+<div class="cols">
+<div>
 
-- `LEITOR` **1:N** `EMPRESTIMO` · `LIVRO` **1:N** `EMPRESTIMO` — o `EMPRESTIMO` resolve o **N:M** entre leitor e livro.
+**Diagrama de Classe**
+![w:250](assets/cls-fornecedor.svg)
 
-<div class="dica">💡 <strong>Sua vez:</strong> traduza os diagramas de classes dos exercícios (Pedidos e RPG) para o ER em Chen — entidades, losangos e cardinalidade.</div>
+</div>
+<div>
+
+**Diagrama E-R**
+![w:280](assets/er-fornecedor.svg)
+
+</div>
+</div>
+
+<div class="dica"><strong>Dicionário de Dados:</strong> FORNECEDORES = <u>codigo</u> + nome + ENDERECO + {telefones}</div>
+
+---
+
+## Tradução Classe → E-R — Relacionamento 1:N
+
+<div class="cols">
+<div>
+
+**Diagrama de Classe**
+![w:330](assets/cls-notas.svg)
+
+</div>
+<div>
+
+**Diagrama E-R**
+![w:330](assets/er-notas.svg)
+
+</div>
+</div>
+
+<div class="dica"><strong>Dicionário de Dados:</strong><br>NOTAS FISCAIS = <u>numero</u> + data + valor<br>ITENS NOTAS FISCAIS = <u>numero</u> + <u>item</u> + quantidade + valor</div>
+
+---
+
+## Tradução Classe → E-R — Relacionamento N:M
+
+<div class="cols">
+<div>
+
+**Diagrama de Classe**
+![w:330](assets/cls-fornecimento.svg)
+
+</div>
+<div>
+
+**Diagrama E-R**
+![w:330](assets/er-fornecimento.svg)
+
+</div>
+</div>
+
+<div class="dica"><strong>Dicionário de Dados:</strong><br>FORNECEDORES = <u>codigo</u> + nome + ENDERECO + {telefones}<br>FORNECIMENTOS = preco<br>PRODUTOS = <u>codigo</u> + nome + quantidade</div>
+
+---
+
+## Tradução Classe → E-R — Generalização
+
+<div class="cols">
+<div>
+
+**Diagrama de Classe**
+![w:300](assets/cls-pessoa.svg)
+
+</div>
+<div>
+
+**Diagrama E-R**
+![w:300](assets/er-pessoa.svg)
+
+</div>
+</div>
+
+<div class="dica"><strong>Dicionário de Dados:</strong><br>PESSOAS = <u>codigo</u> + ENDERECO + {telefones}<br>FÍSICAS = <u>codigo</u> + cpf + nome<br>JURÍDICAS = <u>codigo</u> + cnpj + razão social</div>
+
+---
+
+## Tradução Classe → E-R — Auto-relacionamento
+
+<div class="cols">
+<div>
+
+**Diagrama de Classe**
+![w:300](assets/cls-funcionario.svg)
+
+</div>
+<div>
+
+**Diagrama E-R**
+![w:320](assets/er-funcionario.svg)
+
+</div>
+</div>
+
+<div class="dica"><strong>Dicionário de Dados:</strong> FUNCIONARIOS = <u>codigo_funcionario</u> + codigo_gestor</div>
 
 ---
 

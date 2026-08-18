@@ -1,0 +1,12 @@
+classDiagram
+    direction LR
+    class notafiscal {
+      -numero : int
+      -data : int
+      -valor : int
+    }
+    class itemnotafiscal {
+      -quantidade : int
+      -valor : int
+    }
+    notafiscal "1" -- "1..*" itemnotafiscal

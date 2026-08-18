@@ -1,0 +1,15 @@
+classDiagram
+    class pessoa {
+      -endereco : int
+      -telefone* : int
+    }
+    class fisica {
+      -cpf : int
+      -nome : int
+    }
+    class juridica {
+      -cnpj : int
+      -razaoSocial : int
+    }
+    pessoa <|-- fisica
+    pessoa <|-- juridica

@@ -1,0 +1,18 @@
+classDiagram
+    direction LR
+    class fornecedor {
+      -codigo : int
+      -nome : int
+      -endereco : int
+      -telefone* : int
+    }
+    class produto {
+      -codigo : int
+      -nome : int
+      -quantidade : int
+    }
+    class fornecedorProduto {
+      -preco : int
+    }
+    fornecedor "0..*" -- "1..*" produto
+    fornecedor .. fornecedorProduto

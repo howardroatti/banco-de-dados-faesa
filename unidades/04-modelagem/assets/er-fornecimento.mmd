@@ -1,6 +1,6 @@
 flowchart LR
-    FO["FORNECEDOR"] ---|N| R{"fornece"}
-    R ---|N| PR["PRODUTO"]
+    FO["FORNECEDORES"] ---|"(0,N)"| R{"fornecem"}
+    R ---|"(1,N)"| PR["PRODUTOS"]
     FO:::ent
     PR:::ent
     classDef ent fill:#eef4fb,stroke:#12437f,stroke-width:2px;

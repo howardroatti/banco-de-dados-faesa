@@ -1,0 +1,6 @@
+classDiagram
+    class funcionario {
+      -codigo_funcionario : int
+      -codigo_gestor : int
+    }
+    funcionario "0..1" -- "1" funcionario : gerencia

@@ -1,6 +1,6 @@
 flowchart LR
-    NF["NOTA FISCAL"] ---|1| R{"discrimina"}
-    R ---|N| IT["ITEM"]
+    NF["NOTAS FISCAIS"] ---|"(1,1)"| R{"discriminam"}
+    R ---|"(1,N)"| IT["ITENS NOTAS"]
     NF:::ent
     IT:::ent
     classDef ent fill:#eef4fb,stroke:#12437f,stroke-width:2px;
