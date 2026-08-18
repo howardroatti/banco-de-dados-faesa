@@ -1,0 +1,7 @@
+classDiagram
+    direction LR
+    class LEITOR
+    class EMPRESTIMO
+    class LIVRO
+    LEITOR "1" --> "*" EMPRESTIMO : faz
+    LIVRO "1" --> "*" EMPRESTIMO : consta

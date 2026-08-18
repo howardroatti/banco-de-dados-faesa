@@ -1,7 +1,5 @@
-erDiagram
-    FUNCIONARIOS ||--o{ FUNCIONARIOS : gerencia
-    FUNCIONARIOS {
-        int codigo_funcionario PK
-        string nome
-        int codigo_gestor FK
-    }
+flowchart LR
+    F["FUNCIONÁRIO"] ---|"1 (gestor)"| R{"gerencia"}
+    R ---|"N (subordinado)"| F
+    F:::ent
+    classDef ent fill:#eef4fb,stroke:#12437f,stroke-width:2px;

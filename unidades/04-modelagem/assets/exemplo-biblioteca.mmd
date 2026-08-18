@@ -1,3 +1,9 @@
-erDiagram
-    LEITOR ||--o{ EMPRESTIMO : faz
-    LIVRO  ||--o{ EMPRESTIMO : consta
+flowchart LR
+    LE["LEITOR"] ---|1| R1{"faz"}
+    R1 ---|N| EM["EMPRÉSTIMO"]
+    EM ---|N| R2{"consta"}
+    R2 ---|1| LI["LIVRO"]
+    LE:::ent
+    EM:::ent
+    LI:::ent
+    classDef ent fill:#eef4fb,stroke:#12437f,stroke-width:2px;

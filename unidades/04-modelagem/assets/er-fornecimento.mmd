@@ -1,10 +1,6 @@
-erDiagram
-    FORNECEDORES }o--o{ PRODUTOS : fornecem
-    FORNECEDORES {
-        int codigo PK
-        string nome
-    }
-    PRODUTOS {
-        int codigo PK
-        string nome
-    }
+flowchart LR
+    FO["FORNECEDOR"] ---|N| R{"fornece"}
+    R ---|N| PR["PRODUTO"]
+    FO:::ent
+    PR:::ent
+    classDef ent fill:#eef4fb,stroke:#12437f,stroke-width:2px;

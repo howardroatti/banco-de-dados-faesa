@@ -1,13 +1,6 @@
-erDiagram
-    NOTAS_FISCAIS ||--o{ ITENS_NF : discriminam
-    NOTAS_FISCAIS {
-        int numero PK
-        date data
-        numeric valor
-    }
-    ITENS_NF {
-        int numero FK
-        int item PK
-        int qtd
-        numeric preco
-    }
+flowchart LR
+    NF["NOTA FISCAL"] ---|1| R{"discrimina"}
+    R ---|N| IT["ITEM"]
+    NF:::ent
+    IT:::ent
+    classDef ent fill:#eef4fb,stroke:#12437f,stroke-width:2px;

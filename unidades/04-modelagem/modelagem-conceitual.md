@@ -66,33 +66,30 @@ Prof. M.Sc. Howard Cruz Roatti
 
 ---
 
-## Da notação de Chen à notação de aula
+## Notação de Chen (a do modelo conceitual)
 
-- A notação original de **Chen** (entidades em retângulos, relacionamentos em losangos, atributos em elipses) fica **poluída** em modelos grandes.
-- Adotamos a notação de **"pé de galinha" (crow's foot)** — mais enxuta e usada pelas ferramentas (SQL Power Architect, Mermaid).
+- **Entidades** em **retângulos**, **relacionamentos** em **losangos**, ligados por linhas com a **cardinalidade** nas pontas (ex.: `1`, `N`).
+- É a notação clássica do **conceitual**: mostra **o quê se relaciona com o quê**, sem detalhar campos.
 
-```text
-||   um e somente um        o|   zero ou um
-|{   um ou muitos           o{   zero ou muitos
-```
+<div class="dica">💡 A notação <strong>"pé de galinha" (crow's foot)</strong> — mais enxuta e já com <strong>campos/PK/FK</strong> — entra no <strong>modelo lógico</strong> (Parte 2).</div>
 
 ---
 
 ## Ferramentas de modelagem
 
-**Padrão da disciplina: Mermaid `erDiagram`** — o diagrama vira **texto** (fácil de versionar, colar no material e revisar):
+**No ER (conceitual), o padrão é o Mermaid `flowchart`** — desenha a notação de Chen (**losangos**) como texto:
 
 ```text
-erDiagram
-    FORNECEDOR  ||--o{ NOTA_FISCAL : emite
-    NOTA_FISCAL ||--|{ ITEM        : contem
+flowchart LR
+    LEITOR["LEITOR"] ---|1| R{"faz"}
+    R ---|N| EMPRESTIMO["EMPRESTIMO"]
 ```
 
-- Cardinalidade em **pé de galinha**: `||` um · `o{` zero ou muitos · `|{` um ou muitos.
+- `[ ]` entidade · `{ }` **relacionamento (losango)** · `---|1|` / `---|N|` cardinalidade.
 
-<div class="aviso">📌 No <strong>ER (conceitual)</strong> o Mermaid fica <strong>sem os campos</strong> — foco em <strong>entidades, relacionamentos e cardinalidade</strong>. Os <strong>atributos com tipos, PK, FK e nulls</strong> aparecem no <strong>modelo lógico</strong> (Parte 2).</div>
+<div class="aviso">📌 No ER, <strong>sem os campos</strong>. Tipos, <strong>PK, FK e nulls</strong> entram no <strong>modelo lógico</strong> (Parte 2), onde usamos o <code>erDiagram</code> (crow's foot).</div>
 
-<div class="dica">💡 Também aceitos (mesma notação): <strong>draw.io</strong> e <strong>brModelo</strong>. Entregue a imagem/PDF e, no Mermaid, também o código.</div>
+<div class="dica">💡 Também aceitos: <strong>draw.io</strong> e <strong>brModelo</strong> (fazem Chen nativo). Entregue a imagem/PDF e, no Mermaid, também o código.</div>
 
 ---
 
@@ -145,30 +142,24 @@ Quantas ocorrências de uma entidade se associam a outra:
 
 ---
 
-## Exemplo de uso — do enunciado ao ER
+## Do diagrama de classes ao ER
 
-**Cenário:** uma **biblioteca** registra **empréstimos** — cada **leitor** pega vários **livros** ao longo do tempo.
+Partindo de um **diagrama de classes** (UML), traduzimos para o **ER (Chen)**:
 
-1. **Entidades** (substantivos): `LEITOR`, `LIVRO`, `EMPRESTIMO`.
-2. **Atributos** (só identifique): leitor (matrícula, nome), livro (ISBN, título)… — **sem tipos** ainda.
-3. **Relacionamentos** (verbos): leitor **faz** empréstimo · livro **consta** no empréstimo.
-4. **Cardinalidade**: 1 leitor → N empréstimos · 1 livro → N empréstimos (o `EMPRESTIMO` resolve o **N:N**).
+![h:210 center](assets/biblioteca-classes.svg)
 
-```text
-erDiagram
-    LEITOR ||--o{ EMPRESTIMO : faz
-    LIVRO  ||--o{ EMPRESTIMO : consta
-```
-
-<div class="aviso">📌 No ER, o Mermaid vai <strong>sem os campos</strong> — tipos, PK, FK e nulls ficam para o <strong>modelo lógico</strong> (Parte 2).</div>
+- **Classes → entidades** · **associações → relacionamentos (losango)** · **multiplicidades → cardinalidade** (`1`, `N`).
+- No ER, **sem os campos** — tipos, PK e FK ficam para o **modelo lógico** (Parte 2).
 
 ---
 
-## Exemplo de uso — o diagrama gerado
+## O ER em notação de Chen
 
-![h:300 center](assets/exemplo-biblioteca.svg)
+![h:230 center](assets/exemplo-biblioteca.svg)
 
-<div class="dica">💡 <strong>Sua vez:</strong> aplique os <strong>mesmos 4 passos</strong> aos casos abaixo (Pedidos e RPG).</div>
+- `LEITOR` **1:N** `EMPRESTIMO` · `LIVRO` **1:N** `EMPRESTIMO` — o `EMPRESTIMO` resolve o **N:M** entre leitor e livro.
+
+<div class="dica">💡 <strong>Sua vez:</strong> traduza os diagramas de classes dos exercícios (Pedidos e RPG) para o ER em Chen — entidades, losangos e cardinalidade.</div>
 
 ---
 
