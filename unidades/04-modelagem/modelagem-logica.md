@@ -57,12 +57,14 @@ Prof. M.Sc. Howard Cruz Roatti
 <div>
 
 **Tabelas (lógico)**
-![h:360](assets/tab-fornecedor.svg)
+![h:300](assets/tab-fornecedor.svg)
 
 </div>
 </div>
 
 <div class="dica">A entidade vira <strong>tabela</strong>; o <strong>composto</strong> ENDERECO é decomposto em colunas; o <strong>multivalorado</strong> {telefones} vira a tabela <code>TELEFONES</code> (com FK).</div>
+
+<div class="vm">🖥️ <strong>SQL Power Architect:</strong> defina tipos e constraints na aba <em>Columns</em> (PK, NOT NULL); use <em>Add Relationship</em> para ligar TELEFONES.</div>
 
 ---
 
@@ -78,12 +80,14 @@ Prof. M.Sc. Howard Cruz Roatti
 <div>
 
 **Tabelas (lógico)**
-![h:380](assets/tab-notas.svg)
+![h:300](assets/tab-notas.svg)
 
 </div>
 </div>
 
 <div class="dica">A PK do lado "1" (<code>numero</code>) vira <strong>FK</strong> em <code>ITENS_NF</code>; a PK de ITENS é <strong>composta</strong> (numero + item).</div>
+
+<div class="vm">🖥️ <strong>SQL Power Architect:</strong> arraste de uma tabela para a outra — o sistema sugere a cardinalidade automaticamente.</div>
 
 ---
 
@@ -99,12 +103,14 @@ Prof. M.Sc. Howard Cruz Roatti
 <div>
 
 **Tabelas (lógico)**
-![h:360](assets/tab-fornecimento.svg)
+![h:300](assets/tab-fornecimento.svg)
 
 </div>
 </div>
 
 <div class="dica">O M:N vira a <strong>tabela associativa</strong> <code>FORNECIMENTOS</code>: as duas FKs formam a <strong>PK composta</strong>, mais o atributo <code>preco</code>.</div>
+
+<div class="vm">🖥️ <strong>SQL Power Architect:</strong> para N:M, crie a tabela intermediária <em>manualmente</em> e ligue com dois relacionamentos 1:N.</div>
 
 ---
 
@@ -120,12 +126,14 @@ Prof. M.Sc. Howard Cruz Roatti
 <div>
 
 **Tabelas (lógico)**
-![h:360](assets/tab-pessoa.svg)
+![h:300](assets/tab-pessoa.svg)
 
 </div>
 </div>
 
 <div class="dica">Uma <strong>tabela por tipo</strong>: <code>FISICAS</code> e <code>JURIDICAS</code> usam a mesma PK de <code>PESSOAS</code> (que também é <strong>FK</strong>) — herdam a identidade.</div>
+
+<div class="vm">🖥️ <strong>SQL Power Architect:</strong> crie uma tabela por subtipo e marque a PK do supertipo como <em>PK e FK</em> na subtabela.</div>
 
 ---
 
@@ -147,6 +155,8 @@ Prof. M.Sc. Howard Cruz Roatti
 </div>
 
 <div class="dica"><code>codigo_gestor</code> é uma <strong>FK</strong> que aponta para a própria tabela <code>FUNCIONARIOS</code> (o gestor também é funcionário).</div>
+
+<div class="vm">🖥️ <strong>SQL Power Architect:</strong> adicione a FK <code>codigo_gestor</code> referenciando a própria <code>FUNCIONARIOS</code> (auto-relacionamento).</div>
 
 ---
 
@@ -218,11 +228,12 @@ erDiagram
     MATRICULAS { int matricula PK  int codigo PK }
 ```
 
-| Símbolo | Cardinalidade |
+| Ponta (Mermaid) | Significado |
 |---|---|
-| `\|\|--\|\|` | um e somente um |
-| `\|\|--o{` | um para muitos |
-| `}o--o{` | muitos para muitos |
+| `--o\|` | zero ou um |
+| `--\|\|` | exatamente um |
+| `--o{` | zero ou muitos |
+| `--\|{` | um ou muitos |
 
 ---
 

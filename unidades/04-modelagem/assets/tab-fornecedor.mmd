@@ -1,12 +1,13 @@
 erDiagram
     FORNECEDORES ||--o{ TELEFONES : possui
     FORNECEDORES {
-        int codigo PK
-        varchar nome
-        varchar logradouro
-        varchar cidade
+        int codigo PK "not null"
+        varchar nome "not null"
+        varchar logradouro "not null"
+        varchar cidade "not null"
+        varchar email "null"
     }
     TELEFONES {
-        int codigo PK "FK"
-        varchar telefone PK
+        int codigo PK,FK "not null"
+        varchar telefone PK "not null"
     }

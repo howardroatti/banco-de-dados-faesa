@@ -1,6 +1,6 @@
 erDiagram
     FUNCIONARIOS ||--o{ FUNCIONARIOS : gerencia
     FUNCIONARIOS {
-        int codigo_funcionario PK
-        int codigo_gestor FK
+        int codigo_funcionario PK "not null"
+        int codigo_gestor FK "null"
     }

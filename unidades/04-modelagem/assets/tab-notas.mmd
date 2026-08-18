@@ -1,13 +1,13 @@
 erDiagram
     NOTAS_FISCAIS ||--o{ ITENS_NF : discriminam
     NOTAS_FISCAIS {
-        int numero PK
-        date data
-        numeric valor
+        int numero PK "not null"
+        date data "not null"
+        numeric valor "not null"
     }
     ITENS_NF {
-        int numero PK "FK"
-        int item PK
-        int quantidade
-        numeric valor
+        int numero PK,FK "not null"
+        int item PK "not null"
+        int quantidade "not null"
+        numeric valor "not null"
     }

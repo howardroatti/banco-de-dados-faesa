@@ -2,16 +2,16 @@ erDiagram
     PESSOAS ||--o| FISICAS : e
     PESSOAS ||--o| JURIDICAS : e
     PESSOAS {
-        int codigo PK
-        varchar logradouro
+        int codigo PK "not null"
+        varchar logradouro "not null"
     }
     FISICAS {
-        int codigo PK "FK"
-        varchar cpf
-        varchar nome
+        int codigo PK,FK "not null"
+        varchar cpf "not null"
+        varchar nome "not null"
     }
     JURIDICAS {
-        int codigo PK "FK"
-        varchar cnpj
-        varchar razao_social
+        int codigo PK,FK "not null"
+        varchar cnpj "not null"
+        varchar razao_social "not null"
     }
