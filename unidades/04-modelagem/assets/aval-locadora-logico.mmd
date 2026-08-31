@@ -1,0 +1,62 @@
+erDiagram
+    FILIAL ||--|{ FUNCIONARIO : lota
+    FUNCIONARIO ||--o| FILIAL : gerencia
+    FILIAL ||--|{ VEICULO : mantem
+    CATEGORIA ||--|{ VEICULO : classifica
+    CLIENTE ||--o{ LOCACAO : realiza
+    FUNCIONARIO ||--o{ LOCACAO : registra
+    LOCACAO ||--|{ ITEM_LOCACAO : contem
+    VEICULO ||--o{ ITEM_LOCACAO : aparece
+    LOCACAO ||--|{ PAGAMENTO : gera
+
+    FILIAL {
+        int id_filial PK "not null"
+        varchar nome "not null"
+        varchar cidade "not null"
+        char uf "not null"
+        int matricula_gerente FK "not null"
+    }
+    FUNCIONARIO {
+        int matricula PK "not null"
+        varchar nome "not null"
+        varchar cargo "not null"
+        decimal salario "not null"
+        int id_filial FK "not null"
+    }
+    CLIENTE {
+        int id_cliente PK "not null"
+        varchar nome "not null"
+        varchar cpf "not null"
+        varchar email "null"
+    }
+    CATEGORIA {
+        int id_categoria PK "not null"
+        varchar nome "not null"
+    }
+    VEICULO {
+        varchar placa PK "not null"
+        varchar modelo "not null"
+        int ano "not null"
+        decimal valor_diaria "not null"
+        int id_filial FK "not null"
+        int id_categoria FK "not null"
+    }
+    LOCACAO {
+        int id_locacao PK "not null"
+        date data_retirada "not null"
+        date data_devolucao "null"
+        int id_cliente FK "not null"
+        int matricula_func FK "not null"
+    }
+    ITEM_LOCACAO {
+        int id_locacao PK,FK "not null"
+        varchar placa PK,FK "not null"
+        decimal valor_diaria "not null"
+    }
+    PAGAMENTO {
+        int id_pagamento PK "not null"
+        decimal valor "not null"
+        varchar forma_pagamento "not null"
+        int numero_parcela "not null"
+        int id_locacao FK "not null"
+    }

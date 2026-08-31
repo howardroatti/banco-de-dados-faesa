@@ -1,0 +1,58 @@
+classDiagram
+    direction LR
+    class FILIAL {
+      +id_filial : int (PK)
+      +nome : varchar
+      +cidade : varchar
+      +uf : char
+      +telefone : varchar
+    }
+    class FUNCIONARIO {
+      +matricula : int (PK)
+      +nome : varchar
+      +cargo : varchar
+      +salario : decimal
+      +data_admissao : date
+    }
+    class CLIENTE {
+      +id_cliente : int (PK)
+      +nome : varchar
+      +cpf : varchar
+      +telefone : varchar
+      +email : varchar
+    }
+    class CATEGORIA {
+      +id_categoria : int (PK)
+      +nome : varchar
+      +descricao : varchar
+    }
+    class VEICULO {
+      +placa : varchar (PK)
+      +modelo : varchar
+      +marca : varchar
+      +ano : int
+      +cor : varchar
+      +valor_diaria : decimal
+    }
+    class LOCACAO {
+      +id_locacao : int (PK)
+      +data_retirada : date
+      +data_prevista : date
+      +data_devolucao : date
+      +status : varchar
+    }
+    class PAGAMENTO {
+      +id_pagamento : int (PK)
+      +valor : decimal
+      +forma_pagamento : varchar
+      +data_pagamento : date
+      +numero_parcela : int
+    }
+    FILIAL "1" -- "1..*" FUNCIONARIO : lota
+    FUNCIONARIO "1" -- "0..1" FILIAL : gerencia
+    FILIAL "1" -- "1..*" VEICULO : mantem
+    CATEGORIA "1" -- "1..*" VEICULO : classifica
+    CLIENTE "1" -- "0..*" LOCACAO : realiza
+    FUNCIONARIO "1" -- "0..*" LOCACAO : registra
+    LOCACAO "0..*" -- "1..*" VEICULO : inclui
+    LOCACAO "1" -- "1..*" PAGAMENTO : gera

@@ -1,0 +1,30 @@
+flowchart TB
+    FIL["FILIAL"]:::ent
+    FUN["FUNCIONARIO"]:::ent
+    CLI["CLIENTE"]:::ent
+    CAT["CATEGORIA"]:::ent
+    VEI["VEICULO"]:::ent
+    LOC["LOCACAO"]:::ent
+    PAG["PAGAMENTO"]:::ent
+
+    FIL ---|"(1,N)"| rlota{"lota"}
+    rlota ---|"(1,1)"| FUN
+    FUN ---|"(0,1)"| rger{"gerencia"}
+    rger ---|"(1,1)"| FIL
+    FIL ---|"(1,N)"| rman{"mantém"}
+    rman ---|"(1,1)"| VEI
+    CAT ---|"(1,N)"| rcla{"classifica"}
+    rcla ---|"(1,1)"| VEI
+    CLI ---|"(0,N)"| rrea{"realiza"}
+    rrea ---|"(1,1)"| LOC
+    FUN ---|"(0,N)"| rreg{"registra"}
+    rreg ---|"(1,1)"| LOC
+    LOC ---|"(1,N)"| rinc{"inclui"}
+    rinc ---|"(0,N)"| VEI
+    rinc --- avd(["valor_diária"])
+    LOC ---|"(1,N)"| rgera{"gera"}
+    rgera ---|"(1,1)"| PAG
+
+    classDef ent fill:#eef4fb,stroke:#12437f,stroke-width:2px;
+    classDef attr fill:#fff,stroke:#94a3b8,stroke-width:1px;
+    class avd attr;
