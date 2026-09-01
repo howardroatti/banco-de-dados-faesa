@@ -1,0 +1,64 @@
+erDiagram
+    CLIENTE ||--|{ VEICULO : possui
+    VEICULO ||--o{ ORDEM_SERVICO : abre
+    MECANICO ||--o{ ORDEM_SERVICO : responsavel
+    ORDEM_SERVICO ||--|{ ITEM_SERVICO : contem
+    SERVICO ||--o{ ITEM_SERVICO : aparece
+    ORDEM_SERVICO ||--o{ ITEM_PECA : consome
+    PECA ||--o{ ITEM_PECA : listada
+    ORDEM_SERVICO ||--o| PAGAMENTO : gera
+
+    CLIENTE {
+        int id_cliente PK "not null"
+        varchar nome "not null"
+        varchar cpf "not null"
+        varchar email "null"
+    }
+    VEICULO {
+        varchar placa PK "not null"
+        varchar modelo "not null"
+        varchar marca "not null"
+        int ano "not null"
+        int id_cliente FK "not null"
+    }
+    MECANICO {
+        int id_mecanico PK "not null"
+        varchar nome "not null"
+        varchar especialidade "not null"
+        decimal salario "not null"
+    }
+    ORDEM_SERVICO {
+        int id_os PK "not null"
+        date data_entrada "not null"
+        date data_saida "null"
+        varchar status "not null"
+        varchar placa FK "not null"
+        int id_mecanico FK "not null"
+    }
+    SERVICO {
+        int id_servico PK "not null"
+        varchar nome "not null"
+        decimal preco_base "not null"
+    }
+    ITEM_SERVICO {
+        int id_os PK,FK "not null"
+        int id_servico PK,FK "not null"
+        int quantidade "not null"
+    }
+    PECA {
+        int id_peca PK "not null"
+        varchar nome "not null"
+        decimal preco_unitario "not null"
+        int qtd_estoque "not null"
+    }
+    ITEM_PECA {
+        int id_os PK,FK "not null"
+        int id_peca PK,FK "not null"
+        int quantidade "not null"
+    }
+    PAGAMENTO {
+        int id_pagamento PK "not null"
+        decimal valor "not null"
+        varchar forma_pagamento "not null"
+        int id_os FK "not null"
+    }

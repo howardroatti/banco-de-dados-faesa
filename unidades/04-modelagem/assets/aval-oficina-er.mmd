@@ -1,0 +1,28 @@
+flowchart TB
+    CLI["CLIENTE"]:::ent
+    VEI["VEICULO"]:::ent
+    MEC["MECANICO"]:::ent
+    OS["ORDEM_SERVICO"]:::ent
+    SER["SERVICO"]:::ent
+    PEC["PECA"]:::ent
+    PAG["PAGAMENTO"]:::ent
+
+    CLI ---|"(1,N)"| rpos{"possui"}
+    rpos ---|"(1,1)"| VEI
+    VEI ---|"(0,N)"| rabr{"abre"}
+    rabr ---|"(1,1)"| OS
+    MEC ---|"(0,N)"| rres{"responsável"}
+    rres ---|"(1,1)"| OS
+    OS ---|"(1,N)"| rexe{"executa"}
+    rexe ---|"(0,N)"| SER
+    rexe --- aqs(["quantidade"])
+    OS ---|"(0,N)"| ruti{"utiliza"}
+    ruti ---|"(0,N)"| PEC
+    ruti --- aqp(["quantidade"])
+    OS ---|"(0,1)"| rger{"gera"}
+    rger ---|"(1,1)"| PAG
+
+    classDef ent fill:#eef4fb,stroke:#12437f,stroke-width:2px;
+    classDef attr fill:#fff,stroke:#94a3b8,stroke-width:1px;
+    class aqs attr;
+    class aqp attr;

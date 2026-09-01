@@ -1,0 +1,53 @@
+classDiagram
+    direction LR
+    class CLIENTE {
+      +id_cliente : int (PK)
+      +nome : varchar
+      +cpf : varchar
+      +telefone : varchar
+      +email : varchar
+    }
+    class VEICULO {
+      +placa : varchar (PK)
+      +modelo : varchar
+      +marca : varchar
+      +ano : int
+      +cor : varchar
+    }
+    class MECANICO {
+      +id_mecanico : int (PK)
+      +nome : varchar
+      +especialidade : varchar
+      +salario : decimal
+    }
+    class ORDEM_SERVICO {
+      +id_os : int (PK)
+      +data_entrada : date
+      +data_saida : date
+      +descricao_problema : varchar
+      +status : varchar
+    }
+    class SERVICO {
+      +id_servico : int (PK)
+      +nome : varchar
+      +preco_base : decimal
+      +tempo_estimado : int
+    }
+    class PECA {
+      +id_peca : int (PK)
+      +nome : varchar
+      +preco_unitario : decimal
+      +qtd_estoque : int
+    }
+    class PAGAMENTO {
+      +id_pagamento : int (PK)
+      +valor : decimal
+      +forma_pagamento : varchar
+      +data_pagamento : date
+    }
+    CLIENTE "1" -- "1..*" VEICULO : possui
+    VEICULO "1" -- "0..*" ORDEM_SERVICO : abre
+    MECANICO "1" -- "0..*" ORDEM_SERVICO : responsavel
+    ORDEM_SERVICO "0..*" -- "1..*" SERVICO : executa
+    ORDEM_SERVICO "0..*" -- "0..*" PECA : utiliza
+    ORDEM_SERVICO "1" -- "0..1" PAGAMENTO : gera
