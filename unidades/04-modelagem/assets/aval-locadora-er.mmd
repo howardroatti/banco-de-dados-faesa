@@ -7,25 +7,25 @@ flowchart TB
     LOC["LOCACAO"]
     PAG["PAGAMENTO"]
 
-    FIL ---|"(1,N)"| rlota{"lota"}
-    rlota ---|"(1,1)"| FUN
-    FUN ---|"(0,1)"| rger{"gerencia"}
-    rger ---|"(1,1)"| FIL
-    FIL ---|"(1,N)"| rman{"mantém"}
-    rman ---|"(1,1)"| VEI
-    CAT ---|"(1,N)"| rcla{"classifica"}
-    rcla ---|"(1,1)"| VEI
-    CLI ---|"(0,N)"| rrea{"realiza"}
-    rrea ---|"(1,1)"| LOC
-    FUN ---|"(0,N)"| rreg{"registra"}
-    rreg ---|"(1,1)"| LOC
+    FIL ---|"(1,1)"| rlota{"lota"}
+    rlota ---|"(1,N)"| FUN
+    FUN ---|"(1,1)"| rger{"gerencia"}
+    rger ---|"(0,1)"| FIL
+    FIL ---|"(1,1)"| rman{"mantém"}
+    rman ---|"(1,N)"| VEI
+    CAT ---|"(1,1)"| rcla{"classifica"}
+    rcla ---|"(1,N)"| VEI
+    CLI ---|"(1,1)"| rrea{"realiza"}
+    rrea ---|"(0,N)"| LOC
+    FUN ---|"(1,1)"| rreg{"registra"}
+    rreg ---|"(0,N)"| LOC
     subgraph AEINC["ITEM_LOCACAO (valor_diária)"]
       rinc{"inclui"}
     end
-    LOC ---|"(1,N)"| rinc
-    rinc ---|"(0,N)"| VEI
-    LOC ---|"(1,N)"| rgera{"gera"}
-    rgera ---|"(1,1)"| PAG
+    LOC ---|"(0,N)"| rinc
+    rinc ---|"(1,N)"| VEI
+    LOC ---|"(1,1)"| rgera{"gera"}
+    rgera ---|"(1,N)"| PAG
 
     classDef ent fill:#dfe8f3,stroke:#12437f,stroke-width:2px,color:#0d2b57;
     classDef rel fill:#eef4fb,stroke:#4f6d94,color:#0d2b57;

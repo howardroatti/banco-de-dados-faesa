@@ -7,24 +7,24 @@ flowchart TB
     PEC["PECA"]
     PAG["PAGAMENTO"]
 
-    CLI ---|"(1,N)"| rpos{"possui"}
-    rpos ---|"(1,1)"| VEI
-    VEI ---|"(0,N)"| rabr{"abre"}
-    rabr ---|"(1,1)"| OS
-    MEC ---|"(0,N)"| rres{"responsável"}
-    rres ---|"(1,1)"| OS
+    CLI ---|"(1,1)"| rpos{"possui"}
+    rpos ---|"(1,N)"| VEI
+    VEI ---|"(1,1)"| rabr{"abre"}
+    rabr ---|"(0,N)"| OS
+    MEC ---|"(1,1)"| rres{"responsável"}
+    rres ---|"(0,N)"| OS
     subgraph AEEXE["ITEM_SERVICO (quantidade)"]
       rexe{"executa"}
     end
-    OS ---|"(1,N)"| rexe
-    rexe ---|"(0,N)"| SER
+    OS ---|"(0,N)"| rexe
+    rexe ---|"(1,N)"| SER
     subgraph AEUTI["ITEM_PECA (quantidade)"]
       ruti{"utiliza"}
     end
     OS ---|"(0,N)"| ruti
     ruti ---|"(0,N)"| PEC
-    OS ---|"(0,1)"| rger{"gera"}
-    rger ---|"(1,1)"| PAG
+    OS ---|"(1,1)"| rger{"gera"}
+    rger ---|"(0,1)"| PAG
 
     classDef ent fill:#dfe8f3,stroke:#12437f,stroke-width:2px,color:#0d2b57;
     classDef rel fill:#eef4fb,stroke:#4f6d94,color:#0d2b57;
