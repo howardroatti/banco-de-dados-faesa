@@ -1,11 +1,11 @@
 flowchart TB
-    FIL["FILIAL"]:::ent
-    FUN["FUNCIONARIO"]:::ent
-    CLI["CLIENTE"]:::ent
-    CAT["CATEGORIA"]:::ent
-    VEI["VEICULO"]:::ent
-    LOC["LOCACAO"]:::ent
-    PAG["PAGAMENTO"]:::ent
+    FIL["FILIAL"]
+    FUN["FUNCIONARIO"]
+    CLI["CLIENTE"]
+    CAT["CATEGORIA"]
+    VEI["VEICULO"]
+    LOC["LOCACAO"]
+    PAG["PAGAMENTO"]
 
     FIL ---|"(1,N)"| rlota{"lota"}
     rlota ---|"(1,1)"| FUN
@@ -19,12 +19,15 @@ flowchart TB
     rrea ---|"(1,1)"| LOC
     FUN ---|"(0,N)"| rreg{"registra"}
     rreg ---|"(1,1)"| LOC
-    LOC ---|"(1,N)"| rinc{"inclui"}
+    subgraph AEINC["ITEM_LOCACAO (valor_diária)"]
+      rinc{"inclui"}
+    end
+    LOC ---|"(1,N)"| rinc
     rinc ---|"(0,N)"| VEI
-    rinc --- avd(["valor_diária"])
     LOC ---|"(1,N)"| rgera{"gera"}
     rgera ---|"(1,1)"| PAG
 
-    classDef ent fill:#eef4fb,stroke:#12437f,stroke-width:2px;
-    classDef attr fill:#fff,stroke:#94a3b8,stroke-width:1px;
-    class avd attr;
+    classDef ent fill:#dfe8f3,stroke:#12437f,stroke-width:2px,color:#0d2b57;
+    classDef rel fill:#eef4fb,stroke:#4f6d94,color:#0d2b57;
+    class FIL,FUN,CLI,CAT,VEI,LOC,PAG ent;
+    class rlota,rger,rman,rcla,rrea,rreg,rinc,rgera rel;

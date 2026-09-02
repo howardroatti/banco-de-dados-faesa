@@ -123,7 +123,9 @@ Cada linha traz a **participação (mín, máx)** de cada lado — já definidas
 
 ## Gabarito — Modelo Conceitual (ER)
 
-![h:530 center](assets/aval-locadora-er.svg)
+![h:450 center](assets/aval-locadora-er.svg)
+
+<div class="dica">💡 O N:M vira uma <strong>entidade associativa</strong> (caixa <code>ITEM_LOCACAO</code>, com <code>valor_diária</code>) → <strong>tabela</strong> no lógico.</div>
 
 ---
 

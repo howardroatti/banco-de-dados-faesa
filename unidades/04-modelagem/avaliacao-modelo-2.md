@@ -121,7 +121,9 @@ Cada linha traz a **participação (mín, máx)** de cada lado — já definidas
 
 ## Gabarito — Modelo Conceitual (ER)
 
-![h:540 center](assets/aval-oficina-er.svg)
+![h:450 center](assets/aval-oficina-er.svg)
+
+<div class="dica">💡 Cada N:M vira uma <strong>entidade associativa</strong> (<code>ITEM_SERVICO</code> e <code>ITEM_PECA</code>, com <code>quantidade</code>) → <strong>tabelas</strong> no lógico.</div>
 
 ---
 
