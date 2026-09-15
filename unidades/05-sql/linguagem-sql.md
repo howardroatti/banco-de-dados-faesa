@@ -18,13 +18,13 @@ Prof. M.Sc. Howard Cruz Roatti
 
 ## Nesta aula
 
-Seguimos o **Roteiro Prático de SQL**, na **mesma ordem** em que você vai executá-lo na VM:
+Esta aula **explica a sintaxe da SQL**, organizada como o **Roteiro Prático** — depois você **pratica no próprio roteiro**:
 
 - **Parte 1 — DDL:** montar e evoluir a estrutura (tabelas, colunas, índices, views, chaves).
 - **Parte 2 — DML:** inserir, atualizar e apagar dados.
 - **Parte 3 — DQL:** consultar com `SELECT`, em **6 fases** que sobem de nível.
 
-<div class="vm">🖥️ Cada bloco de código sai de um script do roteiro e roda na <strong>VM LabDatabase</strong> (Oracle). Sintaxe Oracle; ao final, a tabela de <strong>portabilidade</strong>.</div>
+<div class="vm">🖥️ Foco na <strong>sintaxe</strong> (Oracle); os <strong>exercícios</strong> você faz no <a href="roteiro-pratico/Roteiro-Pratico-SQL.pdf">Roteiro Prático de SQL</a>, na <strong>VM LabDatabase</strong>. Ao final, a tabela de portabilidade entre SGBDs.</div>
 
 ---
 
@@ -302,6 +302,24 @@ SELECT PRO.* FROM PRODUTOS PRO
 
 ---
 
+## Fase 1 — outro exemplo (`OR` e `NOT IN`)
+
+```sql
+-- fora de uma faixa de códigos
+SELECT CLI.* FROM CLIENTES CLI
+ WHERE CLI.CODIGO_CLIENTE < 5 OR CLI.CODIGO_CLIENTE > 25;
+
+-- excluir alguns estados
+SELECT CLI.* FROM CLIENTES CLI
+ WHERE CLI.UF NOT IN ('RJ','SP');
+```
+
+<div class="dica">💡 <code>OR</code> combina condições (basta uma ser verdadeira); <code>NOT IN</code> nega a lista.</div>
+
+<div class="vm">🖥️ <strong>Pratique a Fase 1</strong> no <a href="roteiro-pratico/Roteiro-Pratico-SQL.pdf">Roteiro Prático de SQL</a> (Parte 3).</div>
+
+---
+
 ## Fase 2 — junções (INNER JOIN)
 
 ```sql
@@ -315,6 +333,22 @@ SELECT PED.CODIGO_PEDIDO, CLI.NOME_CLIENTE,
 ```
 
 <div class="dica">💡 Cada <code>JOIN ... ON</code> costura duas tabelas pela chave. Dá para renomear a saída com alias (<code>AS "PREÇO DO PRODUTO"</code>) e até criar <strong>colunas calculadas</strong> (<code>PRECO_PRODUTO * 1.3</code>).</div>
+
+---
+
+## Fase 2 — outro exemplo (alias, coluna calculada, subconsulta)
+
+```sql
+SELECT PRO.NOME_PRODUTO  AS "NOME DO PRODUTO",
+       PRO.PRECO_PRODUTO AS "PREÇO ATUAL",
+       (PRO.PRECO_PRODUTO * 1.3) AS "PREÇO PROJETADO"
+  FROM PRODUTOS PRO
+ WHERE PRO.CODIGO_PRODUTO IN (SELECT ITE.CODIGO_PRODUTO FROM ITENS_PEDIDOS ITE);
+```
+
+<div class="dica">💡 Alias entre aspas aceita <strong>acentos e espaços</strong>; dá para calcular colunas na hora (<code>* 1.3</code>) e filtrar por uma <strong>subconsulta</strong> (só produtos que já foram pedidos).</div>
+
+<div class="vm">🖥️ <strong>Pratique a Fase 2</strong> no <a href="roteiro-pratico/Roteiro-Pratico-SQL.pdf">Roteiro Prático de SQL</a> (Parte 3).</div>
 
 ---
 
@@ -354,6 +388,23 @@ SELECT PRO.NOME_PRODUTO, PRO.PRECO_PRODUTO
 
 ---
 
+## Fase 3 — outro exemplo (`COUNT` por grupo)
+
+```sql
+-- quantos clientes (que já pediram) cada UF tem
+SELECT CLI.UF, COUNT(CLI.CODIGO_CLIENTE) AS QUANTIDADE_CLIENTES
+  FROM CLIENTES CLI
+ WHERE CLI.CODIGO_CLIENTE IN (SELECT PED.CODIGO_CLIENTE FROM PEDIDOS PED)
+ GROUP BY CLI.UF
+ ORDER BY QUANTIDADE_CLIENTES DESC;
+```
+
+<div class="dica">💡 O <code>WHERE</code> filtra as <strong>linhas</strong> antes; o <code>GROUP BY</code> forma os grupos; a agregação (<code>COUNT</code>) resume cada grupo; o <code>ORDER BY</code> ordena pelo resultado.</div>
+
+<div class="vm">🖥️ <strong>Pratique a Fase 3</strong> no <a href="roteiro-pratico/Roteiro-Pratico-SQL.pdf">Roteiro Prático de SQL</a> (Parte 3).</div>
+
+---
+
 ## Fase 4 — subconsultas de conjunto (`IN` / `NOT IN`)
 
 ```sql
@@ -367,6 +418,25 @@ SELECT CLI.*
 ```
 
 <div class="dica">💡 <code>IN</code> + <code>NOT IN</code> juntos expressam <strong>diferença de conjuntos</strong> ("está em A e não em B"). A subconsulta pode ainda ter seus próprios <code>JOIN</code>s.</div>
+
+---
+
+## Fase 4 — outro exemplo (subconsulta com junções)
+
+```sql
+-- produtos NUNCA pedidos por clientes do RJ
+SELECT PRO.* FROM PRODUTOS PRO
+ WHERE PRO.CODIGO_PRODUTO NOT IN (
+   SELECT ITE.CODIGO_PRODUTO
+     FROM ITENS_PEDIDOS ITE
+     INNER JOIN PEDIDOS  PED ON ITE.CODIGO_PEDIDO  = PED.CODIGO_PEDIDO
+     INNER JOIN CLIENTES CLI ON CLI.CODIGO_CLIENTE = PED.CODIGO_CLIENTE
+    WHERE CLI.UF = 'RJ');
+```
+
+<div class="dica">💡 A subconsulta pode ter os seus próprios <code>JOIN</code>s e <code>WHERE</code> — ela monta a lista de "produtos pedidos por clientes do RJ", e o <code>NOT IN</code> pega o <strong>complemento</strong>.</div>
+
+<div class="vm">🖥️ <strong>Pratique a Fase 4</strong> no <a href="roteiro-pratico/Roteiro-Pratico-SQL.pdf">Roteiro Prático de SQL</a> (Parte 3).</div>
 
 ---
 
@@ -384,6 +454,24 @@ SELECT PRO.CODIGO_PRODUTO, PRO.NOME_PRODUTO, PRO.PRECO_PRODUTO,
 ```
 
 <div class="dica">💡 Encadear <code>LEFT JOIN</code> preserva os produtos mesmo sem item/pedido; <code>NULLS FIRST</code>/<code>NULLS LAST</code> controlam onde os nulos aparecem na ordenação.</div>
+
+---
+
+## Fase 5 — outro exemplo (LEFT JOIN encadeado)
+
+```sql
+-- todos os clientes e, se houver, os produtos que compraram
+SELECT CLI.NOME_CLIENTE, PRO.NOME_PRODUTO
+  FROM CLIENTES CLI
+  LEFT JOIN PEDIDOS       PED ON CLI.CODIGO_CLIENTE = PED.CODIGO_CLIENTE
+  LEFT JOIN ITENS_PEDIDOS ITE ON PED.CODIGO_PEDIDO  = ITE.CODIGO_PEDIDO
+  LEFT JOIN PRODUTOS      PRO ON ITE.CODIGO_PRODUTO = PRO.CODIGO_PRODUTO
+ ORDER BY CLI.NOME_CLIENTE;
+```
+
+<div class="dica">💡 A <strong>cadeia</strong> de <code>LEFT JOIN</code> preserva o cliente em cada passo — quem não comprou aparece com <code>NULL</code> no produto, em vez de sumir do resultado.</div>
+
+<div class="vm">🖥️ <strong>Pratique a Fase 5</strong> no <a href="roteiro-pratico/Roteiro-Pratico-SQL.pdf">Roteiro Prático de SQL</a> (Parte 3).</div>
 
 ---
 
@@ -409,6 +497,24 @@ CREATE OR REPLACE VIEW PRODUTOS_MEDIDAS AS
 
 ---
 
+## Fase 6 — outro exemplo (VIEW a partir de agregação)
+
+```sql
+CREATE OR REPLACE VIEW TOTAL_CLIENTE_VITORIA AS
+  SELECT CLI.NOME_CLIENTE, SUM(PED.VALOR_TOTAL) AS TOTAL_POR_CLIENTE
+    FROM CLIENTES CLI
+    INNER JOIN PEDIDOS PED ON CLI.CODIGO_CLIENTE = PED.CODIGO_CLIENTE
+   WHERE UPPER(CLI.CIDADE) = 'VITORIA'
+   GROUP BY CLI.NOME_CLIENTE
+   HAVING SUM(PED.VALOR_TOTAL) > (SELECT AVG(PED.VALOR_TOTAL) FROM ...);
+```
+
+<div class="dica">💡 Uma <strong>view</strong> pode encapsular uma consulta inteira — com <code>GROUP BY</code>, <code>HAVING</code> e até subconsulta. Depois, é só <code>SELECT * FROM TOTAL_CLIENTE_VITORIA;</code>.</div>
+
+<div class="vm">🖥️ <strong>Pratique a Fase 6</strong> no <a href="roteiro-pratico/Roteiro-Pratico-SQL.pdf">Roteiro Prático de SQL</a> (Parte 3).</div>
+
+---
+
 ## Portabilidade entre SGBDs
 
 | Recurso | Oracle | PostgreSQL | MySQL |
@@ -430,7 +536,7 @@ Você executa tudo na VM, na mesma ordem desta aula:
 - **Parte 2 — DML:** insert/update/delete e consultas básicas.
 - **Parte 3 — DQL:** as **6 fases** de `SELECT` (vendas), da projeção às subconsultas e views.
 
-<div class="vm">🖥️ Roteiro (PDF), scripts <code>.sql</code> por parte e dados para inserir estão no <strong>Sumário → Unidade 5 → Roteiro Prático de SQL</strong>. Trabalhado <strong>em aula</strong>, na <strong>VM LabDatabase</strong>.</div>
+<div class="vm">🖥️ Esta aula explica a <strong>sintaxe</strong>; os <strong>exercícios</strong> estão no <a href="roteiro-pratico/Roteiro-Pratico-SQL.pdf">Roteiro Prático de SQL</a> (PDF) — com os <strong>scripts <code>.sql</code></strong> por parte e os <strong>dados para inserir</strong> (também no <strong>Sumário → Unidade 5</strong>). Trabalhado <strong>em aula</strong>, na <strong>VM LabDatabase</strong>.</div>
 
 ---
 
