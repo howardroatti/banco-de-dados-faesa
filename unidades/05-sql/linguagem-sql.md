@@ -9,7 +9,7 @@ footer: 'Prof. M.Sc. Howard Cruz Roatti · FAESA · Banco de Dados · 2026/2 · 
 <!-- _paginate: false -->
 
 # Linguagem SQL
-## DDL, DML e DQL na prática
+## DDL, DML e DQL — seguindo o Roteiro Prático
 
 **Unidade 5** · Banco de Dados · 2026/2
 Prof. M.Sc. Howard Cruz Roatti
@@ -18,26 +18,38 @@ Prof. M.Sc. Howard Cruz Roatti
 
 ## Nesta aula
 
-- **SQL**: uma linguagem, quatro grupos — **DDL, DML, DQL, DCL**
-- **DDL** — criar e alterar a estrutura (tabelas, chaves, índices, views)
-- **DML** — inserir, atualizar e apagar dados
-- **DQL** — consultar (`SELECT`): filtros, junções, agregações, subconsultas
-- **Portabilidade** Oracle / PostgreSQL / MySQL
+Seguimos o **Roteiro Prático de SQL**, na **mesma ordem** em que você vai executá-lo na VM:
 
-<div class="vm">🖥️ Todos os exemplos saem do <strong>Roteiro Prático de SQL</strong> e rodam na <strong>VM LabDatabase</strong>.</div>
+- **Parte 1 — DDL:** montar e evoluir a estrutura (tabelas, colunas, índices, views, chaves).
+- **Parte 2 — DML:** inserir, atualizar e apagar dados.
+- **Parte 3 — DQL:** consultar com `SELECT`, em **6 fases** que sobem de nível.
+
+<div class="vm">🖥️ Cada bloco de código sai de um script do roteiro e roda na <strong>VM LabDatabase</strong> (Oracle). Sintaxe Oracle; ao final, a tabela de <strong>portabilidade</strong>.</div>
 
 ---
 
-## O domínio de exemplo (acadêmico)
+## O domínio do roteiro
 
-Um mini sistema acadêmico — o mesmo do Roteiro Prático:
+<div class="cols">
+<div>
 
-- **ALUNOS**, **PROFESSORES**, **DISCIPLINAS**
-- **OFERTAS** (uma disciplina, um professor, um horário)
-- **ALUNOS_OFERTAS** (matrícula do aluno numa oferta — tabela associativa M:N)
-- **TELEFONES_ALUNOS** (telefones de um aluno — 1:N)
+**Partes 1 e 2 — Acadêmico**
+- `ALUNOS`, `PROFESSORES`, `DISCIPLINAS`
+- `OFERTAS` (disciplina + professor + horário)
+- `ALUNOS_OFERTAS` (matrícula — M:N)
+- `TELEFONES_ALUNOS` (1:N)
 
-<div class="dica">💡 Na Parte 3 o roteiro troca para um domínio de <strong>vendas</strong> (clientes, produtos, pedidos) para praticar consultas mais ricas.</div>
+</div>
+<div>
+
+**Parte 3 — Vendas**
+- `CLIENTES`, `PRODUTOS`, `UNIDADE_MEDIDA`, `UF`
+- `PEDIDOS`, `ITENS_PEDIDOS`
+
+</div>
+</div>
+
+<div class="dica">💡 O roteiro troca de domínio na Parte 3 (vendas) para praticar <strong>consultas mais ricas</strong> — mais junções e subconsultas.</div>
 
 ---
 
@@ -56,11 +68,31 @@ Um mini sistema acadêmico — o mesmo do Roteiro Prático:
 
 <!-- _class: secao -->
 
-# DDL — definindo a estrutura
+# Parte 1 · DDL
+### Montar e evoluir a estrutura
 
 ---
 
-## CREATE TABLE
+## Passo 0 — deixar o script reexecutável
+
+O roteiro **abre apagando tudo** (na ordem inversa das dependências), para você poder **rodar de novo** sem erro:
+
+```sql
+-- 1) tira as FKs   2) tira índices   3) tira tabelas   4) views e sequences
+ALTER TABLE ALUNOS_OFERTAS DROP CONSTRAINT ALUNOS_OFERTA_FK;
+DROP INDEX  ALUNOS_NOME_IDX;
+DROP TABLE  ALUNOS_OFERTAS;
+DROP VIEW   ALUNOS_MATRICULADOS;
+DROP SEQUENCE DISCIPLINAS_SEQ;
+```
+
+<div class="aviso">⚠️ A ordem importa: não dá para apagar <code>ALUNOS</code> enquanto houver uma FK apontando para ela. Primeiro as <strong>constraints</strong>, depois as <strong>tabelas</strong>.</div>
+
+---
+
+## Passo 1 — CREATE TABLE (tabelas "cruas")
+
+Primeiro as tabelas com as colunas essenciais — **sem chaves ainda**:
 
 ```sql
 CREATE TABLE ALUNOS (
@@ -70,15 +102,15 @@ CREATE TABLE ALUNOS (
 );
 
 CREATE TABLE DISCIPLINAS (
-    CODIGO_DISCIPLINA   NUMERIC       NOT NULL,
-    NOME_DISCIPLINA     VARCHAR2(100) NOT NULL,
-    CARGA_HORARIA       NUMERIC(3)    NOT NULL,
+    CODIGO_DISCIPLINA   NUMERIC        NOT NULL,
+    NOME_DISCIPLINA     VARCHAR2(100)  NOT NULL,
+    CARGA_HORARIA       NUMERIC(3)     NOT NULL,
     EMENTA              VARCHAR2(4000) NOT NULL,
-    CODIGO_DISCIPLINA_DEPENDENCIA NUMERIC    -- auto-relacionamento
+    CODIGO_DISCIPLINA_DEPENDENCIA NUMERIC        -- auto-relacionamento
 );
 ```
 
-`NOT NULL` é uma **restrição de integridade**: o campo é obrigatório.
+<div class="dica">💡 <code>NOT NULL</code> é uma <strong>restrição</strong>: o campo é obrigatório. As <strong>chaves</strong> (PK/FK) o roteiro adiciona <strong>no fim</strong>, com <code>ALTER</code>.</div>
 
 ---
 
@@ -96,86 +128,91 @@ CREATE TABLE DISCIPLINAS (
 
 ---
 
-## ALTER TABLE — evoluindo a estrutura
+## Passo 2 — ALTER TABLE: evoluir as colunas
+
+Raramente a tabela nasce perfeita. O roteiro usa o **ALTER** para **adicionar, modificar e renomear**:
 
 ```sql
--- adicionar / modificar coluna
-ALTER TABLE ALUNOS   ADD    EMAIL VARCHAR2(200);
-ALTER TABLE ALUNOS   MODIFY EMAIL VARCHAR2(250);
-ALTER TABLE OFERTAS  MODIFY DATA_CRIACAO DATE DEFAULT SYSDATE NOT NULL;
+-- adicionar / modificar
+ALTER TABLE ALUNOS  ADD    EMAIL VARCHAR2(200);
+ALTER TABLE ALUNOS  MODIFY EMAIL VARCHAR2(250);
+ALTER TABLE OFERTAS MODIFY DATA_CRIACAO DATE DEFAULT SYSDATE NOT NULL;
 
--- renomear tabela e coluna
+-- renomear tabela e colunas (padronizar os nomes)
 ALTER TABLE TELEFONES RENAME TO TELEFONES_ALUNOS;
 ALTER TABLE ALUNOS RENAME COLUMN MATRICULA TO MATRICULA_ALUNO;
-
--- remover coluna
-ALTER TABLE ALUNOS DROP COLUMN EMAIL;
+ALTER TABLE ALUNOS RENAME COLUMN NOME      TO NOME_ALUNO;
 ```
 
-<div class="aviso"><code>DROP COLUMN</code> apaga os dados daquela coluna — é irreversível sem backup.</div>
+<div class="aviso">⚠️ Mais adiante o roteiro faz <code>ALTER TABLE ALUNOS DROP COLUMN EMAIL;</code> — o <code>DROP COLUMN</code> apaga os dados da coluna e é irreversível sem backup.</div>
 
 ---
 
-## Chaves: PRIMARY KEY e FOREIGN KEY
+## Passo 3 — Sequences e Índices
 
 ```sql
--- chave primária (simples e composta)
+-- sequência: gerar códigos automáticos (Oracle)
+CREATE SEQUENCE DISCIPLINAS_SEQ;
+-- ... depois: INSERT INTO DISCIPLINAS VALUES (DISCIPLINAS_SEQ.NEXTVAL, ...);
+
+-- índices: acelerar buscas frequentes por nome/dia
+CREATE INDEX ALUNOS_NOME_IDX      ON ALUNOS (NOME_ALUNO);
+CREATE INDEX OFERTAS_DIA_IDX      ON OFERTAS (DIA_SEMANA);
+CREATE INDEX DISCIPLINA_NOME_IDX  ON DISCIPLINAS (NOME_DISCIPLINA);
+```
+
+<div class="dica">💡 Em PostgreSQL/MySQL o autoincremento vem de <code>SERIAL</code> / <code>AUTO_INCREMENT</code>, em vez de <em>sequence</em> explícita.</div>
+
+---
+
+## Passo 4 — Views: consultas com nome
+
+```sql
+CREATE VIEW ALUNOS_MATRICULADOS AS
+  SELECT A.MATRICULA_ALUNO, A.NOME_ALUNO AS ALUNO, AO.SEMESTRE,
+         O.DIA_SEMANA, P.NOME_PROFESSOR AS PROFESSOR, D.NOME_DISCIPLINA
+    FROM ALUNOS_OFERTAS AO
+    INNER JOIN ALUNOS      A ON AO.MATRICULA_ALUNO   = A.MATRICULA_ALUNO
+    INNER JOIN OFERTAS     O ON AO.CODIGO_OFERTA     = O.CODIGO_OFERTA
+    INNER JOIN PROFESSORES P ON O.MATRICULA_PROFESSOR = P.MATRICULA_PROFESSOR
+    INNER JOIN DISCIPLINAS D ON O.CODIGO_DISCIPLINA   = D.CODIGO_DISCIPLINA;
+```
+
+Depois é só `SELECT * FROM ALUNOS_MATRICULADOS;` — a complexidade fica **escondida** atrás do nome.
+
+---
+
+## Passo 5 — Chaves por último: PK e FK
+
+Com as tabelas prontas, o roteiro **fecha a integridade**:
+
+```sql
+-- chaves primárias (simples e composta)
 ALTER TABLE ALUNOS         ADD PRIMARY KEY (MATRICULA_ALUNO);
 ALTER TABLE ALUNOS_OFERTAS ADD PRIMARY KEY (MATRICULA_ALUNO, CODIGO_OFERTA);
 
--- chave estrangeira
+-- chaves estrangeiras (constraint nomeada)
 ALTER TABLE OFERTAS
   ADD CONSTRAINT OFERTAS_PROFESSOR_FK
       FOREIGN KEY (MATRICULA_PROFESSOR)
       REFERENCES PROFESSORES (MATRICULA_PROFESSOR);
 ```
 
-A **FK** garante a **integridade referencial**: não existe oferta apontando para um professor inexistente.
-
----
-
-## Sequences e Índices
-
-```sql
--- sequência para gerar códigos automáticos (Oracle)
-CREATE SEQUENCE DISCIPLINAS_SEQ;
-INSERT INTO DISCIPLINAS VALUES (DISCIPLINAS_SEQ.NEXTVAL, ...);
-
--- índice para acelerar buscas por nome
-CREATE INDEX ALUNOS_NOME_IDX ON ALUNOS (NOME_ALUNO);
-```
-
-<div class="dica">💡 Em PostgreSQL/MySQL, o autoincremento costuma vir de <code>SERIAL</code> / <code>AUTO_INCREMENT</code> em vez de <em>sequence</em> explícita.</div>
-
----
-
-## Views — consultas com nome
-
-```sql
-CREATE VIEW ALUNOS_MATRICULADOS AS
-  SELECT A.NOME_ALUNO AS ALUNO, AO.SEMESTRE,
-         O.DIA_SEMANA, P.NOME_PROFESSOR AS PROFESSOR,
-         D.NOME_DISCIPLINA
-    FROM ALUNOS_OFERTAS AO
-    JOIN ALUNOS       A ON AO.MATRICULA_ALUNO = A.MATRICULA_ALUNO
-    JOIN OFERTAS      O ON AO.CODIGO_OFERTA   = O.CODIGO_OFERTA
-    JOIN PROFESSORES  P ON O.MATRICULA_PROFESSOR = P.MATRICULA_PROFESSOR
-    JOIN DISCIPLINAS  D ON O.CODIGO_DISCIPLINA   = D.CODIGO_DISCIPLINA;
-```
-
-Depois é só `SELECT * FROM ALUNOS_MATRICULADOS;` — a complexidade fica escondida.
+<div class="dica">💡 <strong>Por que no fim?</strong> Uma FK só pode ser criada quando a tabela referenciada <strong>e sua PK</strong> já existem. Por isso a ordem do roteiro: tabelas → PKs → FKs.</div>
 
 ---
 
 <!-- _class: secao -->
 
-# DML — manipulando os dados
+# Parte 2 · DML
+### Inserir, atualizar e apagar
 
 ---
 
 ## INSERT
 
 ```sql
+-- forma posicional
 INSERT INTO ALUNOS
 VALUES (40001, 'JOÃO GABRIEL', TO_DATE('02/04/1985','DD/MM/YYYY'));
 
@@ -191,18 +228,18 @@ VALUES (40002, 'JOÃO JOSÉ', TO_DATE('31/12/2001','DD/MM/YYYY'));
 ## UPDATE
 
 ```sql
--- sempre com WHERE! (senão altera a tabela inteira)
+-- SEMPRE com WHERE! (senão altera a tabela inteira)
 UPDATE ALUNOS
    SET DATA_NASCIMENTO = TO_DATE('29/04/2011','DD/MM/YYYY')
  WHERE MATRICULA_ALUNO = 40004;
 
--- atualização condicional por conjunto
+-- atualização por conjunto
 UPDATE PROFESSORES
    SET FORMACAO = 'PHD'
  WHERE FORMACAO = 'DOUTORADO';
 ```
 
-<div class="aviso">Um <code>UPDATE</code> sem <code>WHERE</code> altera <strong>todas</strong> as linhas. Confira o filtro com um <code>SELECT</code> antes.</div>
+<div class="aviso">⚠️ Um <code>UPDATE</code> sem <code>WHERE</code> altera <strong>todas</strong> as linhas. Confira o filtro com um <code>SELECT</code> antes.</div>
 
 ---
 
@@ -218,147 +255,157 @@ DELETE FROM PROFESSORES P
                     WHERE O.MATRICULA_PROFESSOR = P.MATRICULA_PROFESSOR);
 ```
 
-<div class="dica">💡 Um <code>DELETE</code> só se torna <strong>definitivo</strong> ao confirmar a transação — como desfazer/confirmar é assunto da <strong>Unidade 6</strong>.</div>
+<div class="dica">💡 Um <code>DELETE</code> só vira <strong>definitivo</strong> ao confirmar a transação (<code>COMMIT</code>) — desfazer/confirmar é assunto da <strong>Unidade 6</strong>.</div>
 
 ---
 
 <!-- _class: secao -->
 
-# DQL — consultando com SELECT
+# Parte 3 · DQL
+### `SELECT` em 6 fases (domínio de vendas)
 
 ---
 
-## SELECT: projeção, alias e funções
+## Fase 1 — projeção, DISTINCT e ORDER BY
 
 ```sql
-SELECT MATRICULA_ALUNO,
-       INITCAP(NOME_ALUNO) AS NOME_ALUNO,
-       TO_CHAR(DATA_NASCIMENTO, 'DD/MM/YYYY') AS NASCIMENTO
-  FROM ALUNOS
- WHERE DATA_NASCIMENTO <= TO_DATE('01/01/2000', 'DD/MM/YYYY');
+-- todas as colunas × só as que interessam
+SELECT PRO.NOME_PRODUTO FROM PRODUTOS PRO;
+
+-- valores únicos, ordenados
+SELECT DISTINCT CLI.CIDADE, CLI.UF, CLI.CEP
+  FROM CLIENTES CLI
+ ORDER BY CLI.UF;
 ```
 
 - **Projeção**: escolher **colunas** (em vez de `SELECT *`).
-- **Alias** (`AS`): renomear a coluna no resultado.
-- **Funções**: `INITCAP`, `SUBSTR`, `TO_CHAR`, `UPPER`/`LOWER`…
+- **`DISTINCT`** remove linhas repetidas; **`ORDER BY`** ordena (`ASC` padrão, `DESC` inverte).
 
 ---
 
-## WHERE: operadores de filtro
+## Fase 1 — filtros: comparação, faixa, lista, texto
 
 ```sql
-WHERE PED.VALOR_TOTAL NOT BETWEEN 100 AND 5000        -- faixa
-WHERE CLI.UF IN ('ES','MG')                           -- lista
-WHERE CLI.UF NOT IN ('RJ','SP')
-WHERE CODIGO_DISCIPLINA_DEPENDENCIA IS NULL           -- ausência de valor
-WHERE CLI.CODIGO_CLIENTE < 5 OR CLI.CODIGO_CLIENTE > 25
+SELECT PED.* FROM PEDIDOS PED
+ WHERE PED.CODIGO_CLIENTE = 4 AND PED.VALOR_LIQUIDO > 10000;
+
+SELECT PED.* FROM PEDIDOS PED
+ WHERE PED.VALOR_TOTAL NOT BETWEEN 100 AND 5000;          -- faixa
+
+SELECT CLI.* FROM CLIENTES CLI WHERE CLI.UF IN ('ES','MG'); -- lista
+
+SELECT PRO.* FROM PRODUTOS PRO
+ WHERE UPPER(PRO.NOME_PRODUTO) LIKE 'MA______';           -- MA + 6 chars
 ```
 
-<div class="dica">💡 <code>NULL</code> não é igual a nada — nem a <code>NULL</code>. Teste sempre com <code>IS NULL</code> / <code>IS NOT NULL</code>.</div>
+<div class="dica">💡 No <code>LIKE</code>: <code>%</code> = qualquer sequência · <code>_</code> = um caractere. Use <code>... LIKE '%A\_P%' ESCAPE '\'</code> para procurar o <code>_</code> literal. E teste ausência com <code>IS NULL</code> (nunca <code>= NULL</code>).</div>
 
 ---
 
-## LIKE — padrões de texto
-
-- `%` → qualquer sequência de caracteres · `_` → **um** caractere
+## Fase 2 — junções (INNER JOIN)
 
 ```sql
-WHERE NOME_ALUNO LIKE '%ANTONIO%'      -- contém ANTONIO
-WHERE UPPER(NOME_PRODUTO) LIKE 'MA______'  -- MA + 6 caracteres
-WHERE UPPER(NOME_PRODUTO) LIKE '__ACA%'    -- 'ACA' na 3ª posição
-WHERE UPPER(NOME_PRODUTO) LIKE '%A\_P%' ESCAPE '\'  -- '_' literal
+SELECT PED.CODIGO_PEDIDO, CLI.NOME_CLIENTE,
+       PRO.NOME_PRODUTO, UE.DESCRICAO_UNIDADE_MEDIDA
+  FROM PEDIDOS PED
+  INNER JOIN CLIENTES      CLI ON PED.CODIGO_CLIENTE = CLI.CODIGO_CLIENTE
+  INNER JOIN ITENS_PEDIDOS ITE ON PED.CODIGO_PEDIDO  = ITE.CODIGO_PEDIDO
+  INNER JOIN PRODUTOS      PRO ON ITE.CODIGO_PRODUTO = PRO.CODIGO_PRODUTO
+  INNER JOIN UNIDADE_MEDIDA UE ON PRO.CODIGO_UNIDADE_MEDIDA = UE.CODIGO_UNIDADE_MEDIDA;
 ```
 
-<div class="dica">💡 Use <code>ESCAPE</code> quando precisar procurar os próprios caracteres <code>%</code> ou <code>_</code>.</div>
+<div class="dica">💡 Cada <code>JOIN ... ON</code> costura duas tabelas pela chave. Dá para renomear a saída com alias (<code>AS "PREÇO DO PRODUTO"</code>) e até criar <strong>colunas calculadas</strong> (<code>PRECO_PRODUTO * 1.3</code>).</div>
 
 ---
 
-## ORDER BY e DISTINCT
+## Fase 3 — agregação, GROUP BY e HAVING
 
 ```sql
--- valores únicos, ordenados
-SELECT DISTINCT CIDADE, UF, CEP
-  FROM CLIENTES
- ORDER BY UF;
-
--- ordenação decrescente pelo alias
-SELECT NOME_CLIENTE, SUM(VALOR_TOTAL) AS TOTAL
-  FROM ...
- ORDER BY TOTAL DESC;
-```
-
-`DISTINCT` remove linhas repetidas; `ORDER BY` ordena (`ASC` padrão, `DESC` inverte).
-
----
-
-## JOIN — combinando tabelas
-
-```sql
--- INNER JOIN: só o que casa dos dois lados
-SELECT A.NOME_ALUNO, T.TELEFONE
-  FROM ALUNOS A
-  INNER JOIN TELEFONES_ALUNOS T
-    ON A.MATRICULA_ALUNO = T.MATRICULA_ALUNO;
-
--- LEFT OUTER JOIN: produtos que nunca foram pedidos
-SELECT PRO.*
-  FROM PRODUTOS PRO
-  LEFT OUTER JOIN ITENS_PEDIDOS ITE
-    ON PRO.CODIGO_PRODUTO = ITE.CODIGO_PRODUTO
- WHERE ITE.CODIGO_PRODUTO IS NULL;
-```
-
----
-
-## Funções de agregação
-
-```sql
-SELECT MIN(VALOR_TOTAL) AS MINIMO,
-       MAX(VALOR_TOTAL) AS MAXIMO,
-       SUM(VALOR_TOTAL) AS TOTAL,
-       ROUND(AVG(VALOR_TOTAL), 2) AS MEDIA,
+SELECT MIN(VALOR_TOTAL) AS MINIMO, MAX(VALOR_TOTAL) AS MAXIMO,
+       SUM(VALOR_TOTAL) AS TOTAL, ROUND(AVG(VALOR_TOTAL),2) AS MEDIA,
        COUNT(1) AS QTDE
   FROM PEDIDOS;
-```
 
-`COUNT`, `SUM`, `MIN`, `MAX`, `AVG` **resumem** um conjunto de linhas em um valor.
-
----
-
-## GROUP BY e HAVING
-
-```sql
-SELECT CLI.CODIGO_CLIENTE,
-       ROUND(AVG(PED.VALOR_TOTAL),2) AS MEDIA_POR_CLIENTE
+SELECT CLI.CODIGO_CLIENTE, ROUND(AVG(PED.VALOR_TOTAL),2) AS MEDIA_POR_CLIENTE
   FROM CLIENTES CLI
-  INNER JOIN PEDIDOS PED
-    ON CLI.CODIGO_CLIENTE = PED.CODIGO_CLIENTE
+  INNER JOIN PEDIDOS PED ON CLI.CODIGO_CLIENTE = PED.CODIGO_CLIENTE
  GROUP BY CLI.CODIGO_CLIENTE
- HAVING ROUND(AVG(PED.VALOR_TOTAL),2) > 8000
- ORDER BY MEDIA_POR_CLIENTE;
+ HAVING ROUND(AVG(PED.VALOR_TOTAL),2) > 8000;
 ```
 
-- **`GROUP BY`** agrupa as linhas antes de agregar.
-- **`HAVING`** filtra **grupos** (o `WHERE` filtra **linhas**, antes do agrupamento).
+- **`GROUP BY`** agrupa antes de agregar; **`HAVING`** filtra **grupos** (o `WHERE` filtra **linhas**, antes).
 
 ---
 
-## Subconsultas
+## Fase 3 — LEFT JOIN e subconsulta escalar
 
 ```sql
--- escalar: comparar com a média geral
-SELECT NOME_PRODUTO, PRECO_PRODUTO
-  FROM PRODUTOS
- WHERE PRECO_PRODUTO > (SELECT AVG(PRECO_PRODUTO) FROM PRODUTOS);
+-- produtos que NUNCA foram pedidos (o que existe de um lado e não do outro)
+SELECT PRO.*
+  FROM PRODUTOS PRO
+  LEFT OUTER JOIN ITENS_PEDIDOS ITE ON PRO.CODIGO_PRODUTO = ITE.CODIGO_PRODUTO
+ WHERE ITE.CODIGO_PRODUTO IS NULL;
 
--- diferença de conjuntos com IN / NOT IN
+-- produtos acima da média geral de preço (subconsulta escalar)
+SELECT PRO.NOME_PRODUTO, PRO.PRECO_PRODUTO
+  FROM PRODUTOS PRO
+ WHERE PRO.PRECO_PRODUTO > (SELECT AVG(PRECO_PRODUTO) FROM PRODUTOS);
+```
+
+---
+
+## Fase 4 — subconsultas de conjunto (`IN` / `NOT IN`)
+
+```sql
+-- clientes que pediram no dia 13 MAS não no dia 02
 SELECT CLI.*
   FROM CLIENTES CLI
- WHERE CLI.CODIGO_CLIENTE IN     (SELECT CODIGO_CLIENTE FROM PEDIDOS WHERE DATA_PEDIDO = ...)
-   AND CLI.CODIGO_CLIENTE NOT IN (SELECT CODIGO_CLIENTE FROM PEDIDOS WHERE DATA_PEDIDO = ...);
+ WHERE CLI.CODIGO_CLIENTE IN     (SELECT PED.CODIGO_CLIENTE FROM PEDIDOS PED
+                                   WHERE PED.DATA_PEDIDO = TO_DATE('13/01/2007','DD/MM/YYYY'))
+   AND CLI.CODIGO_CLIENTE NOT IN (SELECT PED.CODIGO_CLIENTE FROM PEDIDOS PED
+                                   WHERE PED.DATA_PEDIDO = TO_DATE('02/01/2007','DD/MM/YYYY'));
 ```
 
-<div class="dica">💡 Uma subconsulta pode devolver um <strong>valor</strong> (escalar), uma <strong>lista</strong> (<code>IN</code>) ou existir/não existir (<code>EXISTS</code>).</div>
+<div class="dica">💡 <code>IN</code> + <code>NOT IN</code> juntos expressam <strong>diferença de conjuntos</strong> ("está em A e não em B"). A subconsulta pode ainda ter seus próprios <code>JOIN</code>s.</div>
+
+---
+
+## Fase 5 — outer joins encadeados e NULLS
+
+```sql
+-- total por produto, incluindo os que não venderam (total NULL primeiro)
+SELECT PRO.CODIGO_PRODUTO, PRO.NOME_PRODUTO, PRO.PRECO_PRODUTO,
+       SUM(PED.VALOR_TOTAL) AS TOTAL_POR_PRODUTO
+  FROM PRODUTOS PRO
+  LEFT JOIN ITENS_PEDIDOS ITE ON PRO.CODIGO_PRODUTO = ITE.CODIGO_PRODUTO
+  LEFT JOIN PEDIDOS       PED ON ITE.CODIGO_PEDIDO  = PED.CODIGO_PEDIDO
+ GROUP BY PRO.CODIGO_PRODUTO, PRO.NOME_PRODUTO, PRO.PRECO_PRODUTO
+ ORDER BY TOTAL_POR_PRODUTO NULLS FIRST;
+```
+
+<div class="dica">💡 Encadear <code>LEFT JOIN</code> preserva os produtos mesmo sem item/pedido; <code>NULLS FIRST</code>/<code>NULLS LAST</code> controlam onde os nulos aparecem na ordenação.</div>
+
+---
+
+## Fase 6 — subconsulta no `SELECT`/`HAVING` e views
+
+```sql
+-- comparar o total de um produto com um valor calculado por subconsulta
+SELECT PRO.NOME_PRODUTO, SUM(PED.VALOR_TOTAL) AS TOTAL_VENDIDO
+  FROM PRODUTOS PRO
+  INNER JOIN ITENS_PEDIDOS ITE ON ITE.CODIGO_PRODUTO = PRO.CODIGO_PRODUTO
+  INNER JOIN PEDIDOS       PED ON ITE.CODIGO_PEDIDO  = PED.CODIGO_PEDIDO
+ GROUP BY PRO.NOME_PRODUTO
+ HAVING SUM(PED.VALOR_TOTAL) > (SELECT SUM(PED.VALOR_TOTAL) FROM ...);  -- ex.: total do 'SAL'
+
+-- guardar uma consulta pronta como VIEW
+CREATE OR REPLACE VIEW PRODUTOS_MEDIDAS AS
+  SELECT PRO.NOME_PRODUTO, UE.DESCRICAO_UNIDADE_MEDIDA
+    FROM PRODUTOS PRO
+    INNER JOIN UNIDADE_MEDIDA UE ON PRO.CODIGO_UNIDADE_MEDIDA = UE.CODIGO_UNIDADE_MEDIDA;
+```
+
+<div class="dica">💡 O fecho do roteiro: consultas que usam o resultado de <strong>outra consulta</strong> — e transformam as boas em <strong>views</strong> reutilizáveis.</div>
 
 ---
 
@@ -367,7 +414,7 @@ SELECT CLI.*
 | Recurso | Oracle | PostgreSQL | MySQL |
 |---|---|---|---|
 | Texto | `VARCHAR2` | `VARCHAR` | `VARCHAR` |
-| Data literal | `TO_DATE('..','DD/MM/YYYY')` | `DATE '2026-01-01'` | `STR_TO_DATE` / `'2026-01-01'` |
+| Data literal | `TO_DATE('..','DD/MM/YYYY')` | `DATE '2026-01-01'` | `'2026-01-01'` |
 | Data/hora atual | `SYSDATE` | `NOW()` | `NOW()` |
 | Autoincremento | `SEQUENCE` | `SERIAL` | `AUTO_INCREMENT` |
 | Trata `NULL` | `NVL(x,y)` | `COALESCE(x,y)` | `IFNULL` / `COALESCE` |
@@ -375,14 +422,15 @@ SELECT CLI.*
 
 ---
 
-## Para praticar
+## Para praticar — o Roteiro Prático de SQL
 
-- Você vai exercitar DDL, DML e DQL no **Roteiro Prático de SQL**, em partes:
-  - **Parte 1** — DDL (montar o esquema acadêmico)
-  - **Parte 2** — DML (insert/update/delete + consultas)
-  - **Parte 3** — DQL avançado (domínio de vendas)
+Você executa tudo na VM, na mesma ordem desta aula:
 
-<div class="vm">🖥️ O roteiro é trabalhado <strong>em aula</strong>, na <strong>VM LabDatabase</strong>. O enunciado é disponibilizado pelo professor no AVA.</div>
+- **Parte 1 — DDL:** montar o esquema acadêmico (create → alter → índices → views → PK/FK).
+- **Parte 2 — DML:** insert/update/delete e consultas básicas.
+- **Parte 3 — DQL:** as **6 fases** de `SELECT` (vendas), da projeção às subconsultas e views.
+
+<div class="vm">🖥️ Roteiro (PDF), scripts <code>.sql</code> por parte e dados para inserir estão no <strong>Sumário → Unidade 5 → Roteiro Prático de SQL</strong>. Trabalhado <strong>em aula</strong>, na <strong>VM LabDatabase</strong>.</div>
 
 ---
 
