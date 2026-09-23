@@ -225,6 +225,38 @@ VALUES (40002, 'JOÃO JOSÉ', TO_DATE('31/12/2001','DD/MM/YYYY'));
 
 ---
 
+## INSERT ALL (Oracle) — várias linhas
+
+```sql
+-- um único comando insere várias linhas na MESMA tabela
+INSERT ALL
+  INTO ALUNOS VALUES (40011, 'ANA LÚCIA',  TO_DATE('10/03/2000','DD/MM/YYYY'))
+  INTO ALUNOS VALUES (40012, 'BRUNO DIAS', TO_DATE('22/08/1999','DD/MM/YYYY'))
+  INTO ALUNOS VALUES (40013, 'CARLA MOTA', TO_DATE('05/01/2001','DD/MM/YYYY'))
+SELECT * FROM DUAL;
+```
+
+<div class="dica">💡 Uma transação para <strong>N inserções</strong> — ótimo para <strong>carga de dados</strong>. Com valores literais, fecha com a subconsulta <code>SELECT * FROM DUAL</code>.</div>
+
+---
+
+## INSERT ALL — condicional (várias tabelas)
+
+```sql
+-- lê a consulta UMA vez e distribui as linhas por destino
+INSERT ALL
+  WHEN CARGA_HORARIA >= 60 THEN INTO DISCIPLINAS_LONGAS (CODIGO, NOME)
+  WHEN CARGA_HORARIA <  60 THEN INTO DISCIPLINAS_CURTAS (CODIGO, NOME)
+SELECT CODIGO_DISCIPLINA, NOME_DISCIPLINA, CARGA_HORARIA
+  FROM DISCIPLINAS;
+```
+
+<div class="dica">💡 <code>INSERT FIRST</code> para na 1ª condição verdadeira; <code>INSERT ALL</code> grava em <strong>todas</strong>.</div>
+
+<div class="aviso">⚠️ Recurso <strong>específico do Oracle</strong> — ver a portabilidade no fim da aula.</div>
+
+---
+
 ## UPDATE
 
 ```sql
@@ -525,6 +557,7 @@ CREATE OR REPLACE VIEW TOTAL_CLIENTE_VITORIA AS
 | Autoincremento | `SEQUENCE` | `SERIAL` | `AUTO_INCREMENT` |
 | Trata `NULL` | `NVL(x,y)` | `COALESCE(x,y)` | `IFNULL` / `COALESCE` |
 | Limitar linhas | `FETCH FIRST n ROWS` | `LIMIT n` | `LIMIT n` |
+| Inserção em massa | `INSERT ALL` / `INSERT FIRST` | `INSERT … VALUES (…),(…)` | `INSERT … VALUES (…),(…)` |
 
 ---
 
